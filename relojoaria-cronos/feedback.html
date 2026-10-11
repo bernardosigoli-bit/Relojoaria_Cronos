@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Relojoaria Cronos — Feedback</title>
+  <meta name="description" content="Envie seu feedback e interesse para a Relojoaria Cronos." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <script src="js/tema.js"></script>
+  <script src="js/sessao.js"></script>
+  <script>exigirLogin();</script>
+</head>
+<body>
+  <a class="pular-conteudo" href="#conteudo">Pular para o conteúdo</a>
+
+  <header class="cabecalho">
+    <button class="botao-hamburguer" id="botao-menu" aria-label="Abrir menu">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="logo"><img class="logo-img" src="assets/logo.png" alt="Relojoaria Cronos" onload="this.nextElementSibling.style.display='none'" onerror="this.style.display='none'"><span>Relojoaria Cronos</span></div>
+    <nav class="navegacao" id="navegacao" aria-label="Navegação principal"></nav>
+  </header>
+
+  <div class="overlay-menu" id="overlay-menu"></div>
+  <aside class="menu-lateral" id="menu-lateral">
+    <button class="fechar-menu" id="botao-fechar-menu" aria-label="Fechar menu">✕</button>
+    <div class="logo"><img class="logo-img" src="assets/logo.png" alt="Relojoaria Cronos" onload="this.nextElementSibling.style.display='none'" onerror="this.style.display='none'"><span>Relojoaria Cronos</span></div>
+    <nav id="menu-nav" aria-label="Menu lateral"></nav>
+  </aside>
+
+  <div class="divisor"></div>
+
+  <main id="conteudo" class="pagina-produto pagina-estreita">
+    <h1 class="titulo-pagina">Feedback e interesse</h1>
+    <p class="painel-sub">Conte para a Cronos o que você procura. Suas respostas aparecem na página "Meus dados enviados".</p>
+
+    <div id="aviso-feedback" class="alerta escondido" role="alert"></div>
+
+    <form id="form-feedback" class="cartao form-feedback" novalidate>
+      <div class="campo">
+        <label for="fb-nome">Cliente</label>
+        <input type="text" id="fb-nome" readonly />
+      </div>
+
+      <div class="campo">
+        <label for="fb-interesse">Nível de interesse em comprar: <output id="fb-interesse-valor">5</output> / 10</label>
+        <input type="range" id="fb-interesse" min="0" max="10" step="1" value="5" />
+      </div>
+
+      <div class="campo">
+        <label for="fb-preco">Quanto pretende investir: <output id="fb-preco-valor"></output></label>
+        <input type="range" id="fb-preco" min="300" max="2000" step="50" value="900" />
+      </div>
+
+      <div class="campo">
+        <label for="fb-categoria">Categoria de maior interesse</label>
+        <select id="fb-categoria">
+          <option value="">Selecione...</option>
+          <option value="Social">Social</option>
+          <option value="Esportivo">Esportivo</option>
+          <option value="Vintage e Estilo">Vintage e Estilo</option>
+        </select>
+        <p class="erro-campo" id="fb-categoria-erro"></p>
+      </div>
+
+      <fieldset class="grupo-campos" id="grupo-conheceu">
+        <legend>Como conheceu a Cronos?</legend>
+        <label class="opcao"><input type="radio" name="conheceu" value="Indicação de amigos" /> Indicação de amigos</label>
+        <label class="opcao"><input type="radio" name="conheceu" value="Redes sociais" /> Redes sociais</label>
+        <label class="opcao"><input type="radio" name="conheceu" value="Busca na internet" /> Busca na internet</label>
+        <label class="opcao"><input type="radio" name="conheceu" value="Anúncio" /> Anúncio</label>
+        <p class="erro-campo" id="fb-conheceu-erro"></p>
+      </fieldset>
+
+      <fieldset class="grupo-campos">
+        <legend>O que mais chama sua atenção? (marque quantos quiser)</legend>
+        <label class="opcao"><input type="checkbox" name="atencao" value="Design e acabamento" /> Design e acabamento</label>
+        <label class="opcao"><input type="checkbox" name="atencao" value="Preço e parcelamento" /> Preço e parcelamento</label>
+        <label class="opcao"><input type="checkbox" name="atencao" value="Materiais e durabilidade" /> Materiais e durabilidade</label>
+        <label class="opcao"><input type="checkbox" name="atencao" value="Marca" /> Marca</label>
+        <label class="opcao"><input type="checkbox" name="atencao" value="Presente para alguém" /> Presente para alguém</label>
+      </fieldset>
+
+      <div class="campo">
+        <label for="fb-comentario">Comentário (opcional)</label>
+        <textarea id="fb-comentario" rows="4" maxlength="400" placeholder="Escreva sua sugestão ou dúvida"></textarea>
+      </div>
+
+      <label class="opcao"><input type="checkbox" id="fb-novidades" /> Quero receber novidades e lançamentos</label>
+
+      <button type="submit" class="botao">Enviar feedback</button>
+    </form>
+  </main>
+
+
+  <div class="divisor"></div>
+  <footer class="rodape">
+    <div class="rodape-colunas">
+      <div>
+        <h2>Relojoaria Cronos</h2>
+        <p>Uma seleção de relógios escolhidos pela precisão, pelo acabamento e pela história que carregam.</p>
+      </div>
+      <nav aria-label="Navegação do rodapé">
+        <h2>Navegar</h2>
+        <a href="index.html">Catálogo</a>
+        <a href="index.html?favoritos=1">Favoritos</a>
+        <a href="pedidos.html">Meus pedidos</a>
+        <a href="checkout.html">Carrinho</a>
+      </nav>
+      <div>
+        <h2>Compra segura</h2>
+        <p>Garantia de 2 anos<br>Troca em até 30 dias<br>Até 10x sem juros</p>
+      </div>
+    </div>
+    <p class="rodape-final">Relojoaria Cronos · Projeto acadêmico</p>
+  </footer>
+
+  <script src="js/produtos.js"></script>
+  <script src="js/carrinho.js"></script>
+  <script src="js/validacoes.js"></script>
+  <script src="js/menu.js"></script>
+  <script src="js/busca.js"></script>
+  <script src="js/acessibilidade.js"></script>
+  <script src="js/cabecalho.js"></script>
+  <script>
+    const usuario = obterUsuario();
+    document.getElementById("fb-nome").value = usuario.nome;
+
+    const campoInteresse = document.getElementById("fb-interesse");
+    const campoPreco = document.getElementById("fb-preco");
+
+    function atualizarSaidas() {
+      document.getElementById("fb-interesse-valor").textContent = campoInteresse.value;
+      document.getElementById("fb-preco-valor").textContent = formatarPreco(Number(campoPreco.value));
+    }
+    campoInteresse.addEventListener("input", atualizarSaidas);
+    campoPreco.addEventListener("input", atualizarSaidas);
+    atualizarSaidas();
+
+    document.getElementById("form-feedback").addEventListener("submit", function (evento) {
+      evento.preventDefault();
+
+      const categoria = document.getElementById("fb-categoria");
+      const conheceu = document.querySelector('input[name="conheceu"]:checked');
+      const okCategoria = mostrarErroCampo(categoria, categoria.value ? "" : "Escolha uma categoria.");
+      document.getElementById("fb-conheceu-erro").textContent = conheceu ? "" : "Escolha uma opção.";
+
+      const aviso = document.getElementById("aviso-feedback");
+      if (!okCategoria || !conheceu) {
+        aviso.textContent = "Preencha os campos obrigatórios para enviar.";
+        aviso.className = "alerta alerta-erro";
+        return;
+      }
+
+      const lista = JSON.parse(localStorage.getItem("relojoaria_feedbacks") || "[]");
+      lista.unshift({
+        id: Date.now(),
+        data: new Date().toISOString(),
+        login: usuario.login,
+        nome: usuario.nome,
+        interesse: Number(campoInteresse.value),
+        investimento: Number(campoPreco.value),
+        categoria: categoria.value,
+        conheceu: conheceu.value,
+        atencao: Array.from(document.querySelectorAll('input[name="atencao"]:checked')).map((c) => c.value),
+        comentario: document.getElementById("fb-comentario").value.trim(),
+        novidades: document.getElementById("fb-novidades").checked,
+      });
+      localStorage.setItem("relojoaria_feedbacks", JSON.stringify(lista));
+
+      window.location.href = "dados.html?enviado=1";
+    });
+  </script>
+
+  <a href="checkout.html" class="carrinho-flutuante" aria-label="Ver carrinho">
+    <svg class="icone-carrinho" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 4h2.2l2.1 10.2a1.5 1.5 0 0 0 1.5 1.2h8.1a1.5 1.5 0 0 0 1.5-1.1L20 8H6.2"/><circle cx="9.5" cy="19.5" r="1.2"/><circle cx="17" cy="19.5" r="1.2"/></svg>
+    <span class="carrinho-contador js-contador-carrinho">0</span>
+  </a>
+</body>
+</html>

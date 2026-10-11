@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Relojoaria Cronos — Relógios para cada momento</title>
+  <meta name="description" content="Relojoaria Cronos: apresentação da loja e catálogo de relógios sociais, esportivos e vintage, com busca e filtros." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/style.css" />
+  <script src="js/tema.js"></script>
+  <script src="js/sessao.js"></script>
+</head>
+<body>
+  <a class="pular-conteudo" href="#conteudo">Pular para o conteúdo</a>
+
+  <header class="cabecalho">
+    <button class="botao-hamburguer" id="botao-menu" aria-label="Abrir menu">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="logo"><img class="logo-img" src="assets/logo.png" alt="Relojoaria Cronos" onload="this.nextElementSibling.style.display='none'" onerror="this.style.display='none'"><span>Relojoaria Cronos</span></div>
+    <nav class="navegacao" id="navegacao" aria-label="Navegação principal"></nav>
+  </header>
+
+  <div class="overlay-menu" id="overlay-menu"></div>
+  <aside class="menu-lateral" id="menu-lateral">
+    <button class="fechar-menu" id="botao-fechar-menu" aria-label="Fechar menu">✕</button>
+    <div class="logo"><img class="logo-img" src="assets/logo.png" alt="Relojoaria Cronos" onload="this.nextElementSibling.style.display='none'" onerror="this.style.display='none'"><span>Relojoaria Cronos</span></div>
+    <nav id="menu-nav" aria-label="Menu lateral"></nav>
+  </aside>
+
+  <div class="divisor"></div>
+
+  <section class="carrossel-relojoaria" aria-label="Destaques da Cronos">
+    <div id="carrossel-inicial" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="5000">
+
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carrossel-inicial" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carrossel-inicial" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carrossel-inicial" data-bs-slide-to="2" aria-label="Slide 3"></button>
+      </div>
+
+      <div class="carousel-inner">
+
+        <div class="carousel-item active">
+          <div class="destaque slide-1">
+            <div class="slide-texto">
+              <span class="slide-selo">Coleção Cronos</span>
+              <h2>O tempo é estilo.</h2>
+              <p>Uma seleção de relógios para homens que valorizam precisão, presença e personalidade.</p>
+              <a class="slide-botao" href="#grade-mais-vendidos">Conhecer a coleção</a>
+            </div>
+            <div class="slide-fotos">
+              <a class="slide-foto" href="produto.html?id=1" aria-label="Ver Classic Prata"><img src="assets/classic-prata.png" alt="Relógio Classic Prata" width="250" height="250"><span>Classic Prata</span></a>
+              <a class="slide-foto" href="produto.html?id=2" aria-label="Ver Elegance Gold"><img src="assets/elegance-gold.png" alt="Relógio Elegance Gold" width="250" height="250"><span>Elegance Gold</span></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="carousel-item">
+          <div class="destaque slide-2">
+            <div class="slide-texto">
+              <span class="slide-selo">Lançamentos</span>
+              <h2>Novos capítulos.</h2>
+              <p>Descubra as peças que chegam para marcar o próximo momento da sua história.</p>
+              <a class="slide-botao" href="#grade-lancamentos">Ver lançamentos</a>
+            </div>
+            <div class="slide-fotos">
+              <a class="slide-foto" href="produto.html?id=6" aria-label="Ver Vintage Bronze"><img src="assets/vintage-bronze.png" alt="Relógio Vintage Bronze" width="250" height="250"><span>Vintage Bronze</span></a>
+              <a class="slide-foto" href="produto.html?id=5" aria-label="Ver Prestige Couro"><img src="assets/prestige-couro.png" alt="Relógio Prestige Couro" width="250" height="250"><span>Prestige Couro</span></a>
+              <a class="slide-foto" href="produto.html?id=3" aria-label="Ver Black Edition"><img src="assets/black-edition.png" alt="Relógio Black Edition" width="250" height="250"><span>Black Edition</span></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="carousel-item">
+          <div class="destaque slide-3">
+            <div class="slide-texto">
+              <span class="slide-selo">Condições especiais</span>
+              <h2>Seu próximo clássico.</h2>
+              <p>Escolha sua peça com tranquilidade: parcele em até 10x sem juros e use um dos nossos cupons.</p>
+              <a class="slide-botao" href="#lista-cupons">Ver cupons</a>
+            </div>
+            <div class="slide-fotos">
+              <div class="slide-selo-parcela" aria-hidden="true"><strong>10x</strong><small>sem juros</small></div>
+              <a class="slide-foto" href="produto.html?id=4" aria-label="Ver Aqua Diver"><img src="assets/aqua-diver.png" alt="Relógio Aqua Diver" width="250" height="250"><span>Aqua Diver</span></a>
+              <a class="slide-foto" href="produto.html?id=7" aria-label="Ver Sport Silicone"><img src="assets/sport-silicone.png" alt="Relógio Sport Silicone" width="250" height="250"><span>Sport Silicone</span></a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <button class="carousel-control-prev" type="button" data-bs-target="#carrossel-inicial" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Anterior</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carrossel-inicial" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Próximo</span>
+      </button>
+    </div>
+  </section>
+
+  <section class="sobre" id="sobre" aria-labelledby="titulo-sobre">
+    <div class="sobre-texto">
+      <span class="sobre-selo">Sobre a Cronos</span>
+      <h2 id="titulo-sobre">Tempo bem escolhido.</h2>
+      <p>A Relojoaria Cronos reúne relógios selecionados pela precisão, pelo acabamento e pela história que carregam. Cada peça tem descrição completa dos materiais da caixa, do vidro, da pulseira e do movimento, para você escolher com segurança.</p>
+      <p>Navegue livremente pelo catálogo. Para finalizar uma compra, basta criar sua conta em poucos passos.</p>
+      <div class="sobre-acoes">
+        <a class="botao" href="#catalogo">Ver catálogo</a>
+        <a class="botao botao-secundario" href="cadastro.html">Criar conta</a>
+      </div>
+    </div>
+    <ul class="sobre-categorias" aria-label="Categorias de relógios">
+      <li><a href="index.html?categoria=social#catalogo"><strong>Social</strong><span>Aço, couro e acabamento discreto para o escritório e eventos.</span></a></li>
+      <li><a href="index.html?categoria=esportivo#catalogo"><strong>Esportivo</strong><span>Resistência e leitura rápida para a rotina ativa.</span></a></li>
+      <li><a href="index.html?categoria=estilo#catalogo"><strong>Vintage e Estilo</strong><span>Personalidade, edições limitadas e visual marcante.</span></a></li>
+    </ul>
+  </section>
+
+  <section class="faixa-cupons" aria-label="Cupons de desconto">
+    <p class="faixa-cupons-titulo">Cupons de desconto</p>
+    <div class="faixa-cupons-lista" id="lista-cupons"></div>
+    <p class="faixa-cupons-dica" id="dica-cupom">Clique no cupom para copiar o código e use na finalização da compra.</p>
+  </section>
+
+  <ul class="faixa-beneficios" aria-label="Vantagens da Cronos">
+    <li>Garantia de 2 anos</li>
+    <li>Frete grátis acima de R$ 1.500</li>
+    <li>Até 10x sem juros</li>
+    <li>Troca em até 30 dias</li>
+  </ul>
+
+  <main id="conteudo">
+    <h2 class="titulo-secao titulo-catalogo" id="catalogo">Catálogo de relógios</h2>
+    <form class="filtros" id="filtros" role="search" aria-label="Filtrar relógios">
+      <input type="search" id="filtro-busca" placeholder="Buscar por nome ou marca" aria-label="Buscar relógio" />
+      <select id="filtro-categoria" aria-label="Filtrar por categoria"><option value="">Todas as categorias</option></select>
+      <select id="filtro-marca" aria-label="Filtrar por marca"><option value="">Todas as marcas</option></select>
+      <select id="filtro-preco" aria-label="Filtrar por preço">
+        <option value="">Qualquer preço</option>
+        <option value="0-800">Até R$ 800</option>
+        <option value="800-1300">R$ 800 a R$ 1.300</option>
+        <option value="1300-99999">Acima de R$ 1.300</option>
+      </select>
+      <select id="filtro-ordem" aria-label="Ordenar relógios">
+        <option value="">Ordenar: padrão</option>
+        <option value="menor">Menor preço</option>
+        <option value="maior">Maior preço</option>
+        <option value="az">Nome A–Z</option>
+        <option value="vendidos">Mais vendidos</option>
+      </select>
+      <label class="filtro-favoritos"><input type="checkbox" id="filtro-favoritos" /> Só favoritos ♥</label>
+      <button type="button" class="botao botao-secundario" id="filtro-limpar">Limpar</button>
+    </form>
+    <p class="sem-resultados" id="sem-resultados" hidden>Nenhum relógio encontrado com esses filtros.</p>
+
+    <h2 class="titulo-secao">Novos capítulos</h2>
+    <div class="grade-produtos" id="grade-lancamentos"></div>
+
+    <h2 class="titulo-secao">Clássicos da Cronos</h2>
+    <div class="grade-produtos" id="grade-mais-vendidos"></div>
+
+    <div class="newsletter">
+      <h2>Receba o próximo capítulo.</h2>
+      <p>Inscreva-se para receber lançamentos, curadorias e novidades da Cronos. Uma experiência exclusiva — sem excesso de mensagens.</p>
+      <form id="form-newsletter">
+        <input type="email" placeholder="seuemail@exemplo.com" aria-label="Seu e-mail" required />
+        <button type="submit" class="botao">Cadastrar</button>
+      </form>
+    </div>
+  </main>
+
+  <div class="divisor"></div>
+  <footer class="rodape">
+    <div class="rodape-colunas">
+      <div>
+        <h2>Relojoaria Cronos</h2>
+        <p>Uma seleção de relógios escolhidos pela precisão, pelo acabamento e pela história que carregam.</p>
+      </div>
+      <nav aria-label="Navegação do rodapé">
+        <h2>Navegar</h2>
+        <a href="index.html">Catálogo</a>
+        <a href="index.html?favoritos=1">Favoritos</a>
+        <a href="pedidos.html">Meus pedidos</a>
+        <a href="checkout.html">Carrinho</a>
+      </nav>
+      <div>
+        <h2>Compra segura</h2>
+        <p>Garantia de 2 anos<br>Troca em até 30 dias<br>Até 10x sem juros</p>
+      </div>
+    </div>
+    <p class="rodape-final">Relojoaria Cronos · Projeto acadêmico</p>
+  </footer>
+
+  <script src="js/produtos.js"></script>
+  <script src="js/carrinho.js"></script>
+  <script src="js/menu.js"></script>
+  <script src="js/busca.js"></script>
+  <script src="js/acessibilidade.js"></script>
+  <script src="js/cabecalho.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/efeitos.js"></script>
+  <script>
+    const grades = {
+      lancamentos: document.getElementById("grade-lancamentos"),
+      "mais-vendidos": document.getElementById("grade-mais-vendidos"),
+    };
+
+    function renderizar() {
+    Object.values(grades).forEach((g) => (g.innerHTML = ""));
+
+    const busca = document.getElementById("filtro-busca").value.trim().toLowerCase();
+    const marca = document.getElementById("filtro-marca").value;
+    const categoria = document.getElementById("filtro-categoria").value;
+    const faixa = document.getElementById("filtro-preco").value;
+    const soFavoritos = document.getElementById("filtro-favoritos").checked;
+
+    const filtrados = produtos.filter((p) => {
+      if (busca && !(p.nome + " " + p.marca).toLowerCase().includes(busca)) return false;
+      if (marca && p.marca !== marca) return false;
+      if (categoria && p.categoria !== categoria) return false;
+      if (faixa) {
+        const [min, max] = faixa.split("-").map(Number);
+        if (p.preco < min || p.preco >= max) return false;
+      }
+      if (soFavoritos && !ehFavorito(p.id)) return false;
+      return true;
+    });
+
+    const ordem = document.getElementById("filtro-ordem").value;
+    if (ordem === "menor") filtrados.sort((a, b) => a.preco - b.preco);
+    if (ordem === "maior") filtrados.sort((a, b) => b.preco - a.preco);
+    if (ordem === "az") filtrados.sort((a, b) => a.nome.localeCompare(b.nome, "pt-BR"));
+    if (ordem === "vendidos") filtrados.sort((a, b) => b.vendas - a.vendas);
+
+    filtrados.forEach((produto) => {
+      const card = document.createElement("article");
+      card.className = "produto cartao";
+
+      const valorParcela = produto.preco / produto.parcelas;
+
+      card.innerHTML = `
+        <button type="button" class="favorito ${ehFavorito(produto.id) ? "ativo" : ""}"
+                aria-pressed="${ehFavorito(produto.id)}" aria-label="Favoritar ${produto.nome}">♥</button>
+        ${produto.selo ? `<span class="selo">${produto.selo}</span>` : ""}
+        <a href="produto.html?id=${produto.id}" class="produto-link" aria-label="Ver detalhes de ${produto.nome}">
+          <div class="produto-imagem">
+            <img src="${produto.imagem}" alt="Foto do relógio ${produto.nome}"
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="imagem-placeholder">
+              <span class="icone-camera">📷</span>
+              <strong class="medida">2 fotos &middot; 800 &times; 800 px</strong>
+              <small>${produto.imagem}<br>${produto.imagem2}</small>
+            </div>
+            <img class="foto-segunda" src="${produto.imagem2}" alt=""
+                 onload="this.parentNode.classList.add('tem-segunda')"
+                 onerror="this.style.display='none'">
+          </div>
+          <div class="bairro">${produto.marca}</div>
+          <h3>${produto.nome}</h3>
+        </a>
+        <p class="descricao">${produto.descricao}</p>
+        <p class="preco">${formatarPreco(produto.preco)}</p>
+        <p class="parcelamento">até ${produto.parcelas}x de ${formatarPreco(valorParcela)} sem juros</p>
+        <p class="avaliacao-card">${
+          obterAvaliacoes(produto.id).length
+            ? `<span class="estrelas">${textoEstrelas(mediaAvaliacoes(produto.id))}</span> ${mediaAvaliacoes(produto.id).toFixed(1)} (${obterAvaliacoes(produto.id).length})`
+            : "Sem avaliações ainda"
+        }</p>
+        <button class="botao">Adicionar ao carrinho</button>
+        <a href="produto.html?id=${produto.id}" class="link-detalhes">Ver detalhes e materiais →</a>
+      `;
+
+      const botao = card.querySelector(".botao");
+      botao.addEventListener("click", () => {
+        adicionarAoCarrinho(produto);
+        mostrarToast(produto.nome + " adicionado ao carrinho ✓");
+      });
+
+      const botaoFav = card.querySelector(".favorito");
+      botaoFav.addEventListener("click", () => {
+        const agora = alternarFavorito(produto.id);
+        botaoFav.classList.toggle("ativo", agora);
+        botaoFav.setAttribute("aria-pressed", agora);
+        if (soFavoritos) renderizar();
+      });
+
+      grades[produto.secao].appendChild(card);
+    });
+
+    Object.values(grades).forEach((g) => {
+      g.previousElementSibling.hidden = g.children.length === 0;
+    });
+    document.getElementById("sem-resultados").hidden = filtrados.length > 0;
+    if (window.ativarInclinacao) window.ativarInclinacao();
+    }
+
+    const selectMarca = document.getElementById("filtro-marca");
+    [...new Set(produtos.map((p) => p.marca))].sort().forEach((m) => {
+      const op = document.createElement("option");
+      op.value = m;
+      op.textContent = m;
+      selectMarca.appendChild(op);
+    });
+
+    const selectCategoria = document.getElementById("filtro-categoria");
+    CATEGORIAS.forEach((c) => {
+      const op = document.createElement("option");
+      op.value = c.chave;
+      op.textContent = c.nome;
+      selectCategoria.appendChild(op);
+    });
+    const categoriaDaUrl = new URLSearchParams(window.location.search).get("categoria");
+    if (CATEGORIAS.some((c) => c.chave === categoriaDaUrl)) selectCategoria.value = categoriaDaUrl;
+
+    document.getElementById("filtros").addEventListener("input", renderizar);
+    document.getElementById("filtros").addEventListener("submit", (e) => e.preventDefault());
+    document.getElementById("filtro-limpar").addEventListener("click", () => {
+      document.getElementById("filtros").reset();
+      renderizar();
+    });
+
+    if (new URLSearchParams(window.location.search).get("favoritos") === "1") {
+      document.getElementById("filtro-favoritos").checked = true;
+    }
+    renderizar();
+
+    document.getElementById("form-newsletter").addEventListener("submit", function (evento) {
+      evento.preventDefault();
+      evento.target.reset();
+      mostrarToast("Obrigado por se inscrever! Você receberá nossas novidades.");
+    });
+  </script>
+  <a href="checkout.html" class="carrinho-flutuante" aria-label="Ver carrinho">
+    <svg class="icone-carrinho" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 4h2.2l2.1 10.2a1.5 1.5 0 0 0 1.5 1.2h8.1a1.5 1.5 0 0 0 1.5-1.1L20 8H6.2"/><circle cx="9.5" cy="19.5" r="1.2"/><circle cx="17" cy="19.5" r="1.2"/></svg>
+    <span class="carrinho-contador js-contador-carrinho">0</span>
+  </a>
+
+</body>
+</html>

@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Relojoaria Cronos — Criar conta</title>
+  <meta name="description" content="Crie sua conta na Relojoaria Cronos." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <script src="js/tema.js"></script>
+  <script src="js/sessao.js"></script>
+</head>
+<body>
+  <a class="pular-conteudo" href="#conteudo">Pular para o conteúdo</a>
+
+  <header class="cabecalho">
+    <button class="botao-hamburguer" id="botao-menu" aria-label="Abrir menu">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="logo"><img class="logo-img" src="assets/logo.png" alt="Relojoaria Cronos" onload="this.nextElementSibling.style.display='none'" onerror="this.style.display='none'"><span>Relojoaria Cronos</span></div>
+    <nav class="navegacao" id="navegacao" aria-label="Navegação principal"></nav>
+  </header>
+
+  <div class="overlay-menu" id="overlay-menu"></div>
+  <aside class="menu-lateral" id="menu-lateral">
+    <button class="fechar-menu" id="botao-fechar-menu" aria-label="Fechar menu">✕</button>
+    <div class="logo"><img class="logo-img" src="assets/logo.png" alt="Relojoaria Cronos" onload="this.nextElementSibling.style.display='none'" onerror="this.style.display='none'"><span>Relojoaria Cronos</span></div>
+    <nav id="menu-nav" aria-label="Menu lateral"></nav>
+  </aside>
+
+  <div class="divisor"></div>
+
+  <main id="conteudo" class="tela-cadastro">
+    <div class="caixa-cadastro cartao">
+      <h1>Criar conta</h1>
+      <p class="subtitulo">Preencha seus dados para finalizar compras e acessar a área do cliente.</p>
+
+      <p class="nota-cupom" id="nota-cupom"></p>
+      <div id="aviso-cadastro" class="alerta escondido" role="alert"></div>
+
+      <form id="form-cadastro" novalidate>
+        <div class="campo">
+          <label for="nome">Nome completo</label>
+          <input type="text" id="nome" maxlength="80" placeholder="Apenas letras, de 15 a 80 caracteres" autocomplete="name" />
+          <p class="erro-campo" id="nome-erro"></p>
+        </div>
+
+        <div class="campo">
+          <label for="cpf">CPF</label>
+          <input type="text" id="cpf" maxlength="14" inputmode="numeric" placeholder="000.000.000-00" autocomplete="off" />
+          <p class="erro-campo" id="cpf-erro"></p>
+        </div>
+
+        <fieldset class="grupo-campos">
+          <legend>Endereço</legend>
+          <div class="linha-cep">
+            <div class="campo">
+              <label for="cep">CEP</label>
+              <input type="text" id="cep" maxlength="9" inputmode="numeric" placeholder="00000-000" autocomplete="postal-code" />
+              <p class="erro-campo" id="cep-erro"></p>
+            </div>
+            <button type="button" id="botao-buscar-cep" class="botao botao-secundario">Buscar CEP</button>
+          </div>
+          <p id="cep-mensagem" class="mensagem-erro" role="status"></p>
+
+          <div class="grade-duas-colunas grade-rua">
+            <div class="campo">
+              <label for="endereco">Rua</label>
+              <input type="text" id="endereco" readonly placeholder="Preenchida pelo CEP" />
+              <p class="erro-campo" id="endereco-erro"></p>
+            </div>
+            <div class="campo">
+              <label for="numero">Número</label>
+              <input type="text" id="numero" maxlength="10" placeholder="Nº" />
+              <p class="erro-campo" id="numero-erro"></p>
+            </div>
+          </div>
+          <div class="grade-tres-colunas">
+            <div class="campo">
+              <label for="bairro">Bairro</label>
+              <input type="text" id="bairro" readonly placeholder="Preenchido pelo CEP" />
+              <p class="erro-campo" id="bairro-erro"></p>
+            </div>
+            <div class="campo">
+              <label for="cidade">Cidade</label>
+              <input type="text" id="cidade" readonly placeholder="Preenchida pelo CEP" />
+              <p class="erro-campo" id="cidade-erro"></p>
+            </div>
+            <div class="campo">
+              <label for="uf">UF</label>
+              <input type="text" id="uf" readonly maxlength="2" placeholder="UF" />
+              <p class="erro-campo" id="uf-erro"></p>
+            </div>
+          </div>
+        </fieldset>
+
+        <div class="grade-duas-colunas">
+          <div class="campo">
+            <label for="fixo">Telefone fixo</label>
+            <input type="tel" id="fixo" maxlength="16" inputmode="numeric" placeholder="(+55)XX-XXXXXXXX" />
+            <p class="erro-campo" id="fixo-erro"></p>
+          </div>
+          <div class="campo">
+            <label for="celular">Celular</label>
+            <input type="tel" id="celular" maxlength="17" inputmode="numeric" placeholder="(+55)XX-XXXXXXXX" />
+            <p class="erro-campo" id="celular-erro"></p>
+          </div>
+        </div>
+
+        <div class="campo">
+          <label for="login">Usuário</label>
+          <input type="text" id="login" maxlength="10" inputmode="numeric" pattern="[0-9]{10}" placeholder="Exatamente 10 dígitos numéricos" autocomplete="username" />
+          <p class="erro-campo" id="login-erro"></p>
+        </div>
+
+        <div class="grade-duas-colunas">
+          <div class="campo">
+            <label for="senha">Senha numérica</label>
+            <input type="password" id="senha" maxlength="8" inputmode="numeric" pattern="[0-9]{8}" placeholder="Exatamente 8 números" autocomplete="new-password" />
+            <p class="erro-campo" id="senha-erro"></p>
+          </div>
+          <div class="campo">
+            <label for="confirmar">Confirmar senha</label>
+            <input type="password" id="confirmar" maxlength="8" inputmode="numeric" pattern="[0-9]{8}" placeholder="Repita os 8 números" autocomplete="new-password" />
+            <p class="erro-campo" id="confirmar-erro"></p>
+          </div>
+        </div>
+
+        <button type="submit" class="botao">Criar conta</button>
+      </form>
+
+      <p class="login-rodape">
+        Já tem conta? <a class="link-destaque" href="login.html">Entrar</a>.<br>
+        Simulação acadêmica: os dados ficam apenas no seu navegador (localStorage).
+      </p>
+    </div>
+  </main>
+
+
+  <div class="divisor"></div>
+  <footer class="rodape">
+    <div class="rodape-colunas">
+      <div>
+        <h2>Relojoaria Cronos</h2>
+        <p>Uma seleção de relógios escolhidos pela precisão, pelo acabamento e pela história que carregam.</p>
+      </div>
+      <nav aria-label="Navegação do rodapé">
+        <h2>Navegar</h2>
+        <a href="index.html">Catálogo</a>
+        <a href="index.html?favoritos=1">Favoritos</a>
+        <a href="pedidos.html">Meus pedidos</a>
+        <a href="checkout.html">Carrinho</a>
+      </nav>
+      <div>
+        <h2>Compra segura</h2>
+        <p>Garantia de 2 anos<br>Troca em até 30 dias<br>Até 10x sem juros</p>
+      </div>
+    </div>
+    <p class="rodape-final">Relojoaria Cronos · Projeto acadêmico</p>
+  </footer>
+
+  <script src="js/produtos.js"></script>
+  <script src="js/carrinho.js"></script>
+  <script src="js/validacoes.js"></script>
+  <script src="js/menu.js"></script>
+  <script src="js/busca.js"></script>
+  <script src="js/acessibilidade.js"></script>
+  <script src="js/cabecalho.js"></script>
+  <script src="js/cep.js"></script>
+  <script>
+    const campos = {
+      nome: () => validarNome(document.getElementById("nome").value),
+      cpf: () => validarCPF(document.getElementById("cpf").value),
+      cep: () => validarCEP(document.getElementById("cep").value),
+      endereco: () => (document.getElementById("endereco").value.trim() ? "" : "Informe a rua (use o CEP)."),
+      numero: () => (document.getElementById("numero").value.trim() ? "" : "Informe o número."),
+      bairro: () => (document.getElementById("bairro").value.trim() ? "" : "Informe o bairro."),
+      cidade: () => (document.getElementById("cidade").value.trim() ? "" : "Informe a cidade."),
+      uf: () => (/^[A-Za-z]{2}$/.test(document.getElementById("uf").value.trim()) ? "" : "Informe a UF."),
+      fixo: () => validarTelefoneFixo(document.getElementById("fixo").value),
+      celular: () => validarTelefoneCelular(document.getElementById("celular").value),
+      login: () => validarLogin(document.getElementById("login").value),
+      senha: () => validarSenha(document.getElementById("senha").value),
+      confirmar: () =>
+        document.getElementById("confirmar").value === document.getElementById("senha").value &&
+        document.getElementById("confirmar").value !== ""
+          ? ""
+          : "A confirmação deve ser igual à senha.",
+    };
+
+    function validarCampo(id) {
+      return mostrarErroCampo(document.getElementById(id), campos[id]());
+    }
+
+    Object.keys(campos).forEach((id) => {
+      document.getElementById(id).addEventListener("blur", () => validarCampo(id));
+    });
+    document.getElementById("senha").addEventListener("input", () => {
+      if (document.getElementById("confirmar").value) validarCampo("confirmar");
+    });
+
+    document.getElementById("cpf").addEventListener("input", (e) => mascararCPF(e.target));
+    document.getElementById("fixo").addEventListener("input", (e) => mascararTelefone(e.target));
+    document.getElementById("celular").addEventListener("input", (e) => mascararTelefone(e.target));
+    ["login", "senha", "confirmar"].forEach((id) => {
+      document.getElementById(id).addEventListener("input", (e) => {
+        e.target.value = e.target.value.replace(/\D/g, "").slice(0, id === "login" ? 10 : 8);
+      });
+    });
+    document.getElementById("botao-buscar-cep").addEventListener("click", buscarEnderecoPorCep);
+
+    const aviso = document.getElementById("aviso-cadastro");
+
+    document.getElementById("form-cadastro").addEventListener("submit", function (evento) {
+      evento.preventDefault();
+
+      const resultados = Object.keys(campos).map((id) => validarCampo(id));
+      if (resultados.includes(false)) {
+        aviso.textContent = "Corrija os campos destacados para continuar.";
+        aviso.className = "alerta alerta-erro";
+        const primeiro = document.querySelector("#form-cadastro .invalido");
+        if (primeiro) primeiro.focus();
+        return;
+      }
+
+      const valor = (id) => document.getElementById(id).value.trim();
+      salvarUsuario({
+        nome: valor("nome").replace(/\s+/g, " "),
+        cpf: valor("cpf"),
+        endereco: {
+          cep: valor("cep"),
+          rua: valor("endereco"),
+          numero: valor("numero"),
+          bairro: valor("bairro"),
+          cidade: valor("cidade"),
+          uf: valor("uf").toUpperCase(),
+        },
+        telefoneFixo: valor("fixo"),
+        celular: valor("celular"),
+        login: valor("login"),
+        senha: document.getElementById("senha").value,
+        criadoEm: new Date().toISOString(),
+      });
+
+      aviso.textContent = "Cadastro realizado com sucesso! Redirecionando para o login...";
+      aviso.className = "alerta alerta-sucesso";
+      mostrarToast("Cadastro realizado com sucesso!");
+      setTimeout(() => {
+        window.location.href = "login.html?cadastro=ok";
+      }, 1600);
+    });
+  </script>
+
+  <a href="checkout.html" class="carrinho-flutuante" aria-label="Ver carrinho">
+    <svg class="icone-carrinho" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 4h2.2l2.1 10.2a1.5 1.5 0 0 0 1.5 1.2h8.1a1.5 1.5 0 0 0 1.5-1.1L20 8H6.2"/><circle cx="9.5" cy="19.5" r="1.2"/><circle cx="17" cy="19.5" r="1.2"/></svg>
+    <span class="carrinho-contador js-contador-carrinho">0</span>
+  </a>
+</body>
+</html>

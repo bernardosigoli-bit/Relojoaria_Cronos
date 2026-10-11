@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Relojoaria Cronos — Dados enviados</title>
+  <meta name="description" content="Dados enviados no formulário de feedback." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <script src="js/tema.js"></script>
+  <script src="js/sessao.js"></script>
+  <script>exigirLogin();</script>
+</head>
+<body>
+  <a class="pular-conteudo" href="#conteudo">Pular para o conteúdo</a>
+
+  <header class="cabecalho">
+    <button class="botao-hamburguer" id="botao-menu" aria-label="Abrir menu">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="logo"><img class="logo-img" src="assets/logo.png" alt="Relojoaria Cronos" onload="this.nextElementSibling.style.display='none'" onerror="this.style.display='none'"><span>Relojoaria Cronos</span></div>
+    <nav class="navegacao" id="navegacao" aria-label="Navegação principal"></nav>
+  </header>
+
+  <div class="overlay-menu" id="overlay-menu"></div>
+  <aside class="menu-lateral" id="menu-lateral">
+    <button class="fechar-menu" id="botao-fechar-menu" aria-label="Fechar menu">✕</button>
+    <div class="logo"><img class="logo-img" src="assets/logo.png" alt="Relojoaria Cronos" onload="this.nextElementSibling.style.display='none'" onerror="this.style.display='none'"><span>Relojoaria Cronos</span></div>
+    <nav id="menu-nav" aria-label="Menu lateral"></nav>
+  </aside>
+
+  <div class="divisor"></div>
+
+  <main id="conteudo" class="pagina-produto pagina-estreita">
+    <h1 class="titulo-pagina">Meus dados enviados</h1>
+
+    <div id="aviso-dados" class="alerta alerta-sucesso escondido" role="status">
+      Feedback enviado com sucesso! Confira abaixo os dados registrados.
+    </div>
+
+    <section id="ultimo-feedback" class="cartao"></section>
+
+    <section id="historico" hidden>
+      <h2 class="painel-titulo">Envios anteriores</h2>
+      <div id="lista-historico"></div>
+    </section>
+
+    <div class="acoes-confirmacao">
+      <a href="feedback.html" class="botao">Enviar novo feedback</a>
+      <a href="perfil.html" class="botao botao-secundario">Voltar ao perfil</a>
+    </div>
+  </main>
+
+
+  <div class="divisor"></div>
+  <footer class="rodape">
+    <div class="rodape-colunas">
+      <div>
+        <h2>Relojoaria Cronos</h2>
+        <p>Uma seleção de relógios escolhidos pela precisão, pelo acabamento e pela história que carregam.</p>
+      </div>
+      <nav aria-label="Navegação do rodapé">
+        <h2>Navegar</h2>
+        <a href="index.html">Catálogo</a>
+        <a href="index.html?favoritos=1">Favoritos</a>
+        <a href="pedidos.html">Meus pedidos</a>
+        <a href="checkout.html">Carrinho</a>
+      </nav>
+      <div>
+        <h2>Compra segura</h2>
+        <p>Garantia de 2 anos<br>Troca em até 30 dias<br>Até 10x sem juros</p>
+      </div>
+    </div>
+    <p class="rodape-final">Relojoaria Cronos · Projeto acadêmico</p>
+  </footer>
+
+  <script src="js/produtos.js"></script>
+  <script src="js/carrinho.js"></script>
+  <script src="js/validacoes.js"></script>
+  <script src="js/menu.js"></script>
+  <script src="js/busca.js"></script>
+  <script src="js/acessibilidade.js"></script>
+  <script src="js/cabecalho.js"></script>
+  <script>
+    const usuario = obterUsuario();
+    const todos = JSON.parse(localStorage.getItem("relojoaria_feedbacks") || "[]")
+      .filter((f) => f.login === usuario.login);
+
+    if (new URLSearchParams(window.location.search).get("enviado") === "1") {
+      document.getElementById("aviso-dados").classList.remove("escondido");
+    }
+
+    function linhaDado(rotulo, valor) {
+      const dt = document.createElement("dt");
+      dt.textContent = rotulo;
+      const dd = document.createElement("dd");
+      dd.textContent = valor;
+      return [dt, dd];
+    }
+
+    function montarLista(f) {
+      const lista = document.createElement("dl");
+      lista.className = "lista-dados";
+      const data = new Date(f.data);
+      const itens = [
+        ["Enviado em", data.toLocaleDateString("pt-BR") + " às " + data.toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit" })],
+        ["Cliente", f.nome],
+        ["Nível de interesse", f.interesse + " / 10"],
+        ["Valor pretendido", formatarPreco(f.investimento)],
+        ["Categoria de interesse", f.categoria],
+        ["Como conheceu a Cronos", f.conheceu],
+        ["O que chama atenção", f.atencao.length ? f.atencao.join(", ") : "Nada marcado"],
+        ["Comentário", f.comentario || "Sem comentário"],
+        ["Receber novidades", f.novidades ? "Sim" : "Não"],
+      ];
+      itens.forEach(([r, v]) => lista.append(...linhaDado(r, v)));
+      return lista;
+    }
+
+    const caixa = document.getElementById("ultimo-feedback");
+    if (todos.length === 0) {
+      caixa.innerHTML = '<p class="carrinho-vazio">Você ainda não enviou nenhum feedback.</p>';
+    } else {
+      const titulo = document.createElement("h2");
+      titulo.className = "painel-titulo";
+      titulo.textContent = "Último envio";
+      caixa.append(titulo, montarLista(todos[0]));
+    }
+
+    if (todos.length > 1) {
+      document.getElementById("historico").hidden = false;
+      todos.slice(1).forEach((f) => {
+        const cartao = document.createElement("article");
+        cartao.className = "cartao bloco-pedido";
+        cartao.appendChild(montarLista(f));
+        document.getElementById("lista-historico").appendChild(cartao);
+      });
+    }
+  </script>
+
+  <a href="checkout.html" class="carrinho-flutuante" aria-label="Ver carrinho">
+    <svg class="icone-carrinho" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 4h2.2l2.1 10.2a1.5 1.5 0 0 0 1.5 1.2h8.1a1.5 1.5 0 0 0 1.5-1.1L20 8H6.2"/><circle cx="9.5" cy="19.5" r="1.2"/><circle cx="17" cy="19.5" r="1.2"/></svg>
+    <span class="carrinho-contador js-contador-carrinho">0</span>
+  </a>
+</body>
+</html>

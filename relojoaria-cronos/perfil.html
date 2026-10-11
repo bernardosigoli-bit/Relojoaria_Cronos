@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Relojoaria Cronos — Meu perfil</title>
+  <meta name="description" content="Área do cliente da Relojoaria Cronos." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <script src="js/tema.js"></script>
+  <script src="js/sessao.js"></script>
+  <script>exigirLogin();</script>
+</head>
+<body>
+  <a class="pular-conteudo" href="#conteudo">Pular para o conteúdo</a>
+
+  <header class="cabecalho">
+    <button class="botao-hamburguer" id="botao-menu" aria-label="Abrir menu">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="logo"><img class="logo-img" src="assets/logo.png" alt="Relojoaria Cronos" onload="this.nextElementSibling.style.display='none'" onerror="this.style.display='none'"><span>Relojoaria Cronos</span></div>
+    <nav class="navegacao" id="navegacao" aria-label="Navegação principal"></nav>
+  </header>
+
+  <div class="overlay-menu" id="overlay-menu"></div>
+  <aside class="menu-lateral" id="menu-lateral">
+    <button class="fechar-menu" id="botao-fechar-menu" aria-label="Fechar menu">✕</button>
+    <div class="logo"><img class="logo-img" src="assets/logo.png" alt="Relojoaria Cronos" onload="this.nextElementSibling.style.display='none'" onerror="this.style.display='none'"><span>Relojoaria Cronos</span></div>
+    <nav id="menu-nav" aria-label="Menu lateral"></nav>
+  </aside>
+
+  <div class="divisor"></div>
+
+  <main id="conteudo" class="pagina-produto pagina-painel">
+    <header class="painel-topo">
+      <div>
+        <span class="sobre-selo">Área do cliente</span>
+        <h1 class="titulo-pagina" id="painel-titulo">Olá!</h1>
+        <p class="painel-sub">Aqui você acompanha seus dados, pedidos e envia sua opinião para a Cronos.</p>
+      </div>
+      <button type="button" class="botao botao-secundario" id="botao-logout">Sair (Logout)</button>
+    </header>
+
+    <section class="painel-resumo" aria-label="Resumo da conta">
+      <a class="painel-numero cartao" href="pedidos.html"><strong id="resumo-pedidos">0</strong><span>Pedidos</span></a>
+      <a class="painel-numero cartao" href="index.html?favoritos=1#catalogo"><strong id="resumo-favoritos">0</strong><span>Favoritos</span></a>
+      <a class="painel-numero cartao" href="dados.html"><strong id="resumo-feedbacks">0</strong><span>Feedbacks enviados</span></a>
+    </section>
+
+    <section class="painel-grade">
+      <article class="cartao painel-dados">
+        <h2 class="painel-titulo">Seus dados</h2>
+        <dl class="lista-dados" id="lista-perfil"></dl>
+      </article>
+
+      <article class="cartao painel-atalhos">
+        <h2 class="painel-titulo">O que deseja fazer?</h2>
+        <a class="botao" href="feedback.html">Enviar feedback</a>
+        <a class="botao botao-secundario" href="dados.html">Ver dados enviados</a>
+        <a class="botao botao-secundario" href="index.html#catalogo">Continuar comprando</a>
+        <a class="botao botao-secundario" href="pedidos.html">Meus pedidos</a>
+      </article>
+    </section>
+  </main>
+
+
+  <div class="divisor"></div>
+  <footer class="rodape">
+    <div class="rodape-colunas">
+      <div>
+        <h2>Relojoaria Cronos</h2>
+        <p>Uma seleção de relógios escolhidos pela precisão, pelo acabamento e pela história que carregam.</p>
+      </div>
+      <nav aria-label="Navegação do rodapé">
+        <h2>Navegar</h2>
+        <a href="index.html">Catálogo</a>
+        <a href="index.html?favoritos=1">Favoritos</a>
+        <a href="pedidos.html">Meus pedidos</a>
+        <a href="checkout.html">Carrinho</a>
+      </nav>
+      <div>
+        <h2>Compra segura</h2>
+        <p>Garantia de 2 anos<br>Troca em até 30 dias<br>Até 10x sem juros</p>
+      </div>
+    </div>
+    <p class="rodape-final">Relojoaria Cronos · Projeto acadêmico</p>
+  </footer>
+
+  <script src="js/produtos.js"></script>
+  <script src="js/carrinho.js"></script>
+  <script src="js/validacoes.js"></script>
+  <script src="js/menu.js"></script>
+  <script src="js/busca.js"></script>
+  <script src="js/acessibilidade.js"></script>
+  <script src="js/cabecalho.js"></script>
+  <script>
+    const usuario = obterUsuario();
+    document.getElementById("painel-titulo").textContent = "Olá, " + usuario.nome.split(" ")[0] + "!";
+
+    const e = usuario.endereco;
+    const linhas = [
+      ["Nome", usuario.nome],
+      ["CPF", usuario.cpf],
+      ["Login", usuario.login],
+      ["Telefone fixo", usuario.telefoneFixo],
+      ["Celular", usuario.celular],
+      ["Endereço", `${e.rua}, ${e.numero} — ${e.bairro}`],
+      ["Cidade / UF", `${e.cidade} / ${e.uf}`],
+      ["CEP", e.cep],
+    ];
+    const lista = document.getElementById("lista-perfil");
+    linhas.forEach(([rotulo, valor]) => {
+      const dt = document.createElement("dt");
+      dt.textContent = rotulo;
+      const dd = document.createElement("dd");
+      dd.textContent = valor;
+      lista.append(dt, dd);
+    });
+
+    const feedbacks = JSON.parse(localStorage.getItem("relojoaria_feedbacks") || "[]")
+      .filter((f) => f.login === usuario.login);
+    document.getElementById("resumo-pedidos").textContent = obterPedidos().length;
+    document.getElementById("resumo-favoritos").textContent = obterFavoritos().length;
+    document.getElementById("resumo-feedbacks").textContent = feedbacks.length;
+
+    document.getElementById("botao-logout").addEventListener("click", sair);
+  </script>
+
+  <a href="checkout.html" class="carrinho-flutuante" aria-label="Ver carrinho">
+    <svg class="icone-carrinho" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 4h2.2l2.1 10.2a1.5 1.5 0 0 0 1.5 1.2h8.1a1.5 1.5 0 0 0 1.5-1.1L20 8H6.2"/><circle cx="9.5" cy="19.5" r="1.2"/><circle cx="17" cy="19.5" r="1.2"/></svg>
+    <span class="carrinho-contador js-contador-carrinho">0</span>
+  </a>
+</body>
+</html>

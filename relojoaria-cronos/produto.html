@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Relojoaria Cronos — Produto</title>
+  <meta name="description" content="Detalhes, materiais e preço do relógio na Relojoaria Cronos." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/style.css" />
+  <script src="js/tema.js"></script>
+  <script src="js/sessao.js"></script>
+</head>
+<body>
+  <a class="pular-conteudo" href="#conteudo">Pular para o conteúdo</a>
+
+  <header class="cabecalho">
+    <button class="botao-hamburguer" id="botao-menu" aria-label="Abrir menu">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="logo"><img class="logo-img" src="assets/logo.png" alt="Relojoaria Cronos" onload="this.nextElementSibling.style.display='none'" onerror="this.style.display='none'"><span>Relojoaria Cronos</span></div>
+    <nav class="navegacao" id="navegacao" aria-label="Navegação principal"></nav>
+  </header>
+
+  <div class="overlay-menu" id="overlay-menu"></div>
+  <aside class="menu-lateral" id="menu-lateral">
+    <button class="fechar-menu" id="botao-fechar-menu" aria-label="Fechar menu">✕</button>
+    <div class="logo"><img class="logo-img" src="assets/logo.png" alt="Relojoaria Cronos" onload="this.nextElementSibling.style.display='none'" onerror="this.style.display='none'"><span>Relojoaria Cronos</span></div>
+    <nav id="menu-nav" aria-label="Menu lateral"></nav>
+  </aside>
+
+  <div class="divisor"></div>
+
+  <main id="conteudo">
+    <div class="pagina-produto" id="pagina-produto">
+
+      <a href="index.html" class="voltar-catalogo">← Voltar ao catálogo</a>
+
+      <section class="detalhe-produto">
+        <div class="galeria">
+          <div class="detalhe-imagem" id="detalhe-imagem">
+            <span class="selo" id="detalhe-selo" hidden></span>
+            <img id="detalhe-foto" alt=""
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="imagem-placeholder">
+              <span class="icone-camera">📷</span>
+              <strong class="medida" id="detalhe-medida">Foto 1 &middot; 800 &times; 800 px</strong>
+              <small id="detalhe-caminho-foto"></small>
+            </div>
+          </div>
+          <div class="miniaturas" id="miniaturas" role="group" aria-label="Fotos do relógio"></div>
+        </div>
+
+        <div class="detalhe-info">
+          <div class="bairro" id="detalhe-marca"></div>
+          <h1 id="detalhe-nome"></h1>
+          <p class="detalhe-descricao" id="detalhe-descricao"></p>
+          <p class="preco" id="detalhe-preco"></p>
+          <p class="parcelamento" id="detalhe-parcelamento"></p>
+          <div class="acoes-produto">
+            <button class="botao" id="botao-adicionar">Adicionar ao carrinho</button>
+            <button type="button" class="favorito favorito-detalhe" id="botao-favorito" aria-label="Favoritar">♥</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="materiais">
+        <h2 class="titulo-secao titulo-secao-estreito">Materiais do relógio</h2>
+
+        <div class="abas-materiais" id="abas-materiais" role="tablist" aria-label="Materiais do relógio"></div>
+
+        <div class="painel-material" id="painel-material" role="tabpanel" aria-live="polite">
+          <span class="painel-parte" id="painel-parte"></span>
+          <h3 id="painel-material-nome"></h3>
+          <p id="painel-material-texto"></p>
+        </div>
+      </section>
+
+      <section class="avaliacoes">
+        <h2 class="titulo-secao titulo-secao-estreito">Avaliações dos clientes</h2>
+        <p class="avaliacoes-media" id="avaliacoes-media"></p>
+        <form class="cartao" id="form-avaliacao">
+          <label for="nota">Sua nota</label>
+          <select id="nota" required>
+            <option value="">Escolha...</option>
+            <option value="5">★★★★★ — Excelente</option>
+            <option value="4">★★★★☆ — Muito bom</option>
+            <option value="3">★★★☆☆ — Bom</option>
+            <option value="2">★★☆☆☆ — Regular</option>
+            <option value="1">★☆☆☆☆ — Ruim</option>
+          </select>
+          <label for="comentario-avaliacao">Comentário</label>
+          <textarea id="comentario-avaliacao" rows="3" maxlength="300" required placeholder="Conte o que achou do relógio"></textarea>
+          <button type="submit" class="botao">Enviar avaliação</button>
+        </form>
+        <div id="lista-avaliacoes"></div>
+      </section>
+
+      <h2 class="titulo-secao">Veja também</h2>
+      <div class="grade-produtos" id="grade-relacionados"></div>
+    </div>
+  </main>
+
+  <div class="divisor"></div>
+  <footer class="rodape">
+    <div class="rodape-colunas">
+      <div>
+        <h2>Relojoaria Cronos</h2>
+        <p>Uma seleção de relógios escolhidos pela precisão, pelo acabamento e pela história que carregam.</p>
+      </div>
+      <nav aria-label="Navegação do rodapé">
+        <h2>Navegar</h2>
+        <a href="index.html">Catálogo</a>
+        <a href="index.html?favoritos=1">Favoritos</a>
+        <a href="pedidos.html">Meus pedidos</a>
+        <a href="checkout.html">Carrinho</a>
+      </nav>
+      <div>
+        <h2>Compra segura</h2>
+        <p>Garantia de 2 anos<br>Troca em até 30 dias<br>Até 10x sem juros</p>
+      </div>
+    </div>
+    <p class="rodape-final">Relojoaria Cronos · Projeto acadêmico</p>
+  </footer>
+
+  <script src="js/produtos.js"></script>
+  <script src="js/carrinho.js"></script>
+  <script src="js/menu.js"></script>
+  <script src="js/busca.js"></script>
+  <script src="js/acessibilidade.js"></script>
+  <script src="js/cabecalho.js"></script>
+  <script>
+    const parametros = new URLSearchParams(window.location.search);
+    const idProduto = Number(parametros.get("id"));
+    const produto = produtos.find((p) => p.id === idProduto);
+
+    if (!produto) {
+      window.location.replace("404.html");
+    }
+
+    if (produto) {
+      document.title = "Relojoaria Cronos — " + produto.nome;
+
+      document.getElementById("detalhe-marca").textContent = produto.marca;
+      document.getElementById("detalhe-nome").textContent = produto.nome;
+      document.getElementById("detalhe-descricao").textContent = produto.descricao;
+      document.getElementById("detalhe-preco").textContent = formatarPreco(produto.preco);
+      document.getElementById("detalhe-parcelamento").textContent =
+        "até " + produto.parcelas + "x de " + formatarPreco(produto.preco / produto.parcelas) + " sem juros";
+
+      const foto = document.getElementById("detalhe-foto");
+      const placeholder = foto.nextElementSibling;
+      const fotos = [produto.imagem, produto.imagem2];
+
+      function mostrarFoto(indice) {
+        foto.style.display = "";
+        placeholder.style.display = "none";
+        foto.src = fotos[indice];
+        foto.alt = "Foto " + (indice + 1) + " do relógio " + produto.nome;
+        document.getElementById("detalhe-medida").innerHTML = "Foto " + (indice + 1) + " &middot; 800 &times; 800 px";
+        document.getElementById("detalhe-caminho-foto").textContent = fotos[indice];
+        document.querySelectorAll("#miniaturas button").forEach((botao, i) => {
+          botao.classList.toggle("ativa", i === indice);
+          botao.setAttribute("aria-pressed", i === indice);
+        });
+      }
+
+      document.getElementById("miniaturas").innerHTML = fotos
+        .map(
+          (caminho, i) => `
+            <button type="button" class="miniatura" aria-label="Ver foto ${i + 1}">
+              <span class="miniatura-rotulo">Foto ${i + 1}</span>
+              <img src="${caminho}" alt="" onerror="this.style.display='none'">
+            </button>`
+        )
+        .join("");
+
+      document.querySelectorAll("#miniaturas button").forEach((botao, i) => {
+        botao.addEventListener("click", () => mostrarFoto(i));
+      });
+
+      mostrarFoto(0);
+
+      if (produto.selo) {
+        const selo = document.getElementById("detalhe-selo");
+        selo.textContent = produto.selo;
+        selo.hidden = false;
+      }
+
+      const botaoAdicionar = document.getElementById("botao-adicionar");
+      botaoAdicionar.addEventListener("click", () => {
+        adicionarAoCarrinho(produto);
+        mostrarToast(produto.nome + " adicionado ao carrinho ✓");
+      });
+
+      function renderizarAvaliacoes() {
+        const lista = obterAvaliacoes(produto.id);
+        document.getElementById("avaliacoes-media").innerHTML = lista.length
+          ? `<span class="estrelas">${textoEstrelas(mediaAvaliacoes(produto.id))}</span> ${mediaAvaliacoes(produto.id).toFixed(1)} de 5 · ${lista.length} avaliação(ões)`
+          : "Este relógio ainda não tem avaliações. Seja o primeiro!";
+        const caixa = document.getElementById("lista-avaliacoes");
+        caixa.innerHTML = "";
+        lista.forEach((a, indice) => {
+          const item = document.createElement("div");
+          item.className = "avaliacao-item";
+          const topo = document.createElement("strong");
+          topo.className = "estrelas";
+          topo.textContent = textoEstrelas(a.nota);
+          const texto = document.createElement("p");
+          texto.textContent = a.comentario;
+          const excluir = document.createElement("button");
+          excluir.type = "button";
+          excluir.className = "excluir-avaliacao";
+          excluir.textContent = "excluir";
+          excluir.setAttribute("aria-label", "Excluir esta avaliação");
+          let aguardando = false;
+          excluir.addEventListener("click", () => {
+            if (aguardando) {
+              removerAvaliacao(produto.id, indice);
+              renderizarAvaliacoes();
+              return;
+            }
+            aguardando = true;
+            excluir.textContent = "confirmar exclusão?";
+            setTimeout(() => {
+              aguardando = false;
+              excluir.textContent = "excluir";
+            }, 4000);
+          });
+          item.append(topo, texto, excluir);
+          caixa.appendChild(item);
+        });
+      }
+      document.getElementById("form-avaliacao").addEventListener("submit", (e) => {
+        e.preventDefault();
+        const nota = Number(document.getElementById("nota").value);
+        const comentario = document.getElementById("comentario-avaliacao").value.trim();
+        if (!nota || !comentario) return;
+        salvarAvaliacao(produto.id, nota, comentario);
+        e.target.reset();
+        renderizarAvaliacoes();
+        mostrarToast("Avaliação enviada ✓");
+      });
+      renderizarAvaliacoes();
+
+      const botaoFavorito = document.getElementById("botao-favorito");
+      function pintarFavorito() {
+        const fav = ehFavorito(produto.id);
+        botaoFavorito.classList.toggle("ativo", fav);
+        botaoFavorito.setAttribute("aria-pressed", fav);
+        botaoFavorito.setAttribute("aria-label", fav ? "Remover dos favoritos" : "Adicionar aos favoritos");
+      }
+      botaoFavorito.addEventListener("click", () => { alternarFavorito(produto.id); pintarFavorito(); });
+      pintarFavorito();
+
+      const abas = document.getElementById("abas-materiais");
+      const painelParte = document.getElementById("painel-parte");
+      const painelNome = document.getElementById("painel-material-nome");
+      const painelTexto = document.getElementById("painel-material-texto");
+
+      function mostrarMaterial(indice) {
+        const item = produto.materiais[indice];
+        painelParte.textContent = item.parte;
+        painelNome.textContent = item.material;
+        painelTexto.textContent = item.texto;
+
+        abas.querySelectorAll(".aba-material").forEach((botao, i) => {
+          botao.classList.toggle("ativa", i === indice);
+          botao.setAttribute("aria-selected", i === indice ? "true" : "false");
+        });
+      }
+
+      produto.materiais.forEach((item, indice) => {
+        const botao = document.createElement("button");
+        botao.type = "button";
+        botao.className = "aba-material";
+        botao.setAttribute("role", "tab");
+        botao.textContent = item.parte;
+        botao.addEventListener("click", () => mostrarMaterial(indice));
+        abas.appendChild(botao);
+      });
+
+      mostrarMaterial(0);
+
+      const grade = document.getElementById("grade-relacionados");
+
+      produtos
+        .filter((p) => p.id !== produto.id)
+        .slice(0, 4)
+        .forEach((outro) => {
+          const card = document.createElement("article");
+          card.className = "produto cartao";
+          card.innerHTML = `
+            <a href="produto.html?id=${outro.id}" class="produto-link" aria-label="Ver detalhes de ${outro.nome}">
+              <div class="produto-imagem">
+                <img src="${outro.imagem}" alt="Foto do relógio ${outro.nome}"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="imagem-placeholder"><span class="icone-camera">📷</span></div>
+              </div>
+              <div class="bairro">${outro.marca}</div>
+              <h3>${outro.nome}</h3>
+            </a>
+            <p class="preco">${formatarPreco(outro.preco)}</p>
+            <a href="produto.html?id=${outro.id}" class="link-detalhes">Ver detalhes e materiais →</a>
+          `;
+          grade.appendChild(card);
+        });
+    }
+  </script>
+
+  <a href="checkout.html" class="carrinho-flutuante" aria-label="Ver carrinho">
+    <svg class="icone-carrinho" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 4h2.2l2.1 10.2a1.5 1.5 0 0 0 1.5 1.2h8.1a1.5 1.5 0 0 0 1.5-1.1L20 8H6.2"/><circle cx="9.5" cy="19.5" r="1.2"/><circle cx="17" cy="19.5" r="1.2"/></svg>
+    <span class="carrinho-contador js-contador-carrinho">0</span>
+  </a>
+
+</body>
+</html>

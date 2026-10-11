@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Relojoaria Cronos — Meus pedidos</title>
+  <meta name="description" content="Histórico de pedidos da Relojoaria Cronos." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <script src="js/tema.js"></script>
+  <script src="js/sessao.js"></script>
+</head>
+<body>
+  <a class="pular-conteudo" href="#conteudo">Pular para o conteúdo</a>
+
+  <header class="cabecalho">
+    <button class="botao-hamburguer" id="botao-menu" aria-label="Abrir menu">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="logo"><img class="logo-img" src="assets/logo.png" alt="Relojoaria Cronos" onload="this.nextElementSibling.style.display='none'" onerror="this.style.display='none'"><span>Relojoaria Cronos</span></div>
+    <nav class="navegacao" id="navegacao" aria-label="Navegação principal"></nav>
+  </header>
+
+  <div class="overlay-menu" id="overlay-menu"></div>
+  <aside class="menu-lateral" id="menu-lateral">
+    <button class="fechar-menu" id="botao-fechar-menu" aria-label="Fechar menu">✕</button>
+    <div class="logo"><img class="logo-img" src="assets/logo.png" alt="Relojoaria Cronos" onload="this.nextElementSibling.style.display='none'" onerror="this.style.display='none'"><span>Relojoaria Cronos</span></div>
+    <nav id="menu-nav" aria-label="Menu lateral"></nav>
+  </aside>
+
+  <div class="divisor"></div>
+
+  <main id="conteudo" class="pagina-produto pagina-estreita">
+    <h1 class="titulo-pagina">Meus pedidos</h1>
+    <div id="lista-pedidos"></div>
+  </main>
+
+  <div class="divisor"></div>
+  <footer class="rodape">
+    <div class="rodape-colunas">
+      <div>
+        <h2>Relojoaria Cronos</h2>
+        <p>Uma seleção de relógios escolhidos pela precisão, pelo acabamento e pela história que carregam.</p>
+      </div>
+      <nav aria-label="Navegação do rodapé">
+        <h2>Navegar</h2>
+        <a href="index.html">Catálogo</a>
+        <a href="index.html?favoritos=1">Favoritos</a>
+        <a href="pedidos.html">Meus pedidos</a>
+        <a href="checkout.html">Carrinho</a>
+      </nav>
+      <div>
+        <h2>Compra segura</h2>
+        <p>Garantia de 2 anos<br>Troca em até 30 dias<br>Até 10x sem juros</p>
+      </div>
+    </div>
+    <p class="rodape-final">Relojoaria Cronos · Projeto acadêmico</p>
+  </footer>
+
+  <script src="js/produtos.js"></script>
+  <script src="js/carrinho.js"></script>
+  <script src="js/menu.js"></script>
+  <script src="js/busca.js"></script>
+  <script src="js/acessibilidade.js"></script>
+  <script src="js/cabecalho.js"></script>
+  <script>
+    const lista = document.getElementById("lista-pedidos");
+    const pedidos = obterPedidos();
+
+    if (pedidos.length === 0) {
+      lista.innerHTML = `
+        <div class="cartao bloco-pedido">
+          <p class="carrinho-vazio">Você ainda não fez nenhum pedido.</p>
+          <a href="index.html" class="botao">Ver o catálogo</a>
+        </div>`;
+    } else {
+      lista.innerHTML = pedidos.map((p) => `
+        <article class="cartao bloco-pedido">
+          <header class="pedido-topo">
+            <div>
+              <span class="painel-parte">Pedido ${p.numero}</span>
+              <small>${new Date(p.data).toLocaleDateString("pt-BR")} às ${new Date(p.data).toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit" })}</small>
+            </div>
+            <strong class="pedido-total">${formatarPreco(p.total)}</strong>
+          </header>
+          ${p.itens.map((i) => `<div class="item-carrinho"><span>${i.nome} × ${i.quantidade}</span><span>${formatarPreco(i.preco * i.quantidade)}</span></div>`).join("")}
+          ${p.desconto ? `<div class="resumo-linha"><span>Desconto (${p.cupom})</span><span>− ${formatarPreco(p.desconto)}</span></div>` : ""}
+          <div class="resumo-linha"><span>Frete</span><span>${p.frete === 0 ? "Grátis" : formatarPreco(p.frete)}</span></div>
+          ${p.pagamento ? `<p class="pedido-endereco">Pagamento: ${p.pagamento}${p.parcelas > 1 ? " em " + p.parcelas + "x" : ""}</p>` : ""}
+          <p class="pedido-endereco">Entrega: ${p.endereco.rua}, ${p.endereco.numero} — ${p.endereco.bairro}, ${p.endereco.cidade}/${p.endereco.uf}</p>
+        </article>`).join("");
+    }
+  </script>
+
+  <a href="checkout.html" class="carrinho-flutuante" aria-label="Ver carrinho">
+    <svg class="icone-carrinho" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 4h2.2l2.1 10.2a1.5 1.5 0 0 0 1.5 1.2h8.1a1.5 1.5 0 0 0 1.5-1.1L20 8H6.2"/><circle cx="9.5" cy="19.5" r="1.2"/><circle cx="17" cy="19.5" r="1.2"/></svg>
+    <span class="carrinho-contador js-contador-carrinho">0</span>
+  </a>
+</body>
+</html>

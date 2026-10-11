@@ -1,0 +1,51 @@
+LOGO (opcional)
+logo.png -> 600 x 180 px, PNG com fundo transparente, versão CLARA do
+logo (o cabeçalho e o menu são marrons). O arquivo que vem no projeto é provisório:
+salve a sua logo por cima, com o mesmo nome. Se apagar o arquivo, aparece o
+nome da loja em texto.
+
+TAMANHO DAS IMAGENS
+Fotos dos produtos: 800 x 800 px (quadradas)
+(O carrossel do catálogo usa as fotos dos produtos, não precisa de banner.)
+
+Coloque aqui as fotos dos relógios, em formato .png, usando EXATAMENTE
+estes nomes de arquivo (é assim que o index.html procura por elas):
+
+classic-prata.png
+elegance-gold.png
+black-edition.png
+aqua-diver.png
+prestige-couro.png
+vintage-bronze.png
+sport-silicone.png
+nature-green.png
+
+O carrossel do topo do catálogo não usa imagens próprias: ele monta os slides
+com as fotos dos produtos (as mesmas de cima) sobre um fundo marrom em CSS.
+
+
+--- Fundo da tela de login (opcional) ---
+fundo-login.jpg   -> foto de relógios (formato largo, ex.: 1920x1080)
+fundo-login.mp4   -> vídeo curto em loop, sem som (mp4)
+Se os arquivos não existirem, a tela mostra relógios animados em SVG.
+
+Obs.: os PNGs dos 8 relógios que vêm no projeto são ilustrações geradas
+para preencher o site. Substitua por fotos reais com os mesmos nomes.
+
+
+--- DUAS FOTOS POR PRODUTO ---
+Cada relógio tem 2 espaços de foto (800 x 800 px). Use estes nomes:
+
+classic-prata.png      e  classic-prata-2.png
+elegance-gold.png      e  elegance-gold-2.png
+black-edition.png      e  black-edition-2.png
+aqua-diver.png         e  aqua-diver-2.png
+prestige-couro.png     e  prestige-couro-2.png
+vintage-bronze.png     e  vintage-bronze-2.png
+sport-silicone.png     e  sport-silicone-2.png
+nature-green.png       e  nature-green-2.png
+
+A foto 1 é a principal. A foto 2 aparece quando o mouse passa sobre o
+card no catálogo e como segunda miniatura na página do produto.
+Enquanto a foto 2 não existir, o card continua só com a foto 1 e a
+miniatura mostra o rótulo "Foto 2".

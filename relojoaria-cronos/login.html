@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Relojoaria Cronos — Entrar</title>
+  <meta name="description" content="Entre na sua conta da Relojoaria Cronos." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <script src="js/tema.js"></script>
+  <script src="js/sessao.js"></script>
+</head>
+<body>
+  <a class="pular-conteudo" href="#conteudo">Pular para o conteúdo</a>
+
+  <header class="cabecalho">
+    <button class="botao-hamburguer" id="botao-menu" aria-label="Abrir menu">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="logo"><img class="logo-img" src="assets/logo.png" alt="Relojoaria Cronos" onload="this.nextElementSibling.style.display='none'" onerror="this.style.display='none'"><span>Relojoaria Cronos</span></div>
+    <nav class="navegacao" id="navegacao" aria-label="Navegação principal"></nav>
+  </header>
+
+  <div class="overlay-menu" id="overlay-menu"></div>
+  <aside class="menu-lateral" id="menu-lateral">
+    <button class="fechar-menu" id="botao-fechar-menu" aria-label="Fechar menu">✕</button>
+    <div class="logo"><img class="logo-img" src="assets/logo.png" alt="Relojoaria Cronos" onload="this.nextElementSibling.style.display='none'" onerror="this.style.display='none'"><span>Relojoaria Cronos</span></div>
+    <nav id="menu-nav" aria-label="Menu lateral"></nav>
+  </aside>
+
+  <div class="divisor"></div>
+
+  <div class="fundo-login" aria-hidden="true">
+    <div class="fundo-relogios" id="fundo-relogios"></div>
+    <div class="fundo-pelicula"></div>
+  </div>
+
+  <main id="conteudo" class="tela-login">
+    <div class="caixa-login cartao">
+      <h1>Entrar</h1>
+      <p class="subtitulo">Acesse sua área do cliente.</p>
+
+      <div id="aviso-login" class="alerta escondido" role="alert"></div>
+
+      <form id="form-login" novalidate>
+        <div class="campo">
+          <label for="login">Usuário</label>
+          <input type="text" id="login" maxlength="10" inputmode="numeric" pattern="[0-9]{10}" placeholder="10 dígitos numéricos" autocomplete="username" />
+          <p class="erro-campo" id="login-erro"></p>
+        </div>
+        <div class="campo">
+          <label for="senha">Senha numérica</label>
+          <input type="password" id="senha" maxlength="8" inputmode="numeric" pattern="[0-9]{8}" placeholder="8 números" autocomplete="current-password" />
+          <p class="erro-campo" id="senha-erro"></p>
+        </div>
+        <button type="submit" class="botao">Entrar</button>
+      </form>
+
+      <p class="login-rodape">
+        Ainda não tem conta? <a class="link-destaque" href="cadastro.html">Cadastre-se</a>.<br>
+        Simulação acadêmica: os dados ficam apenas no seu navegador.
+      </p>
+    </div>
+  </main>
+
+
+  <div class="divisor"></div>
+  <footer class="rodape">
+    <div class="rodape-colunas">
+      <div>
+        <h2>Relojoaria Cronos</h2>
+        <p>Uma seleção de relógios escolhidos pela precisão, pelo acabamento e pela história que carregam.</p>
+      </div>
+      <nav aria-label="Navegação do rodapé">
+        <h2>Navegar</h2>
+        <a href="index.html">Catálogo</a>
+        <a href="index.html?favoritos=1">Favoritos</a>
+        <a href="pedidos.html">Meus pedidos</a>
+        <a href="checkout.html">Carrinho</a>
+      </nav>
+      <div>
+        <h2>Compra segura</h2>
+        <p>Garantia de 2 anos<br>Troca em até 30 dias<br>Até 10x sem juros</p>
+      </div>
+    </div>
+    <p class="rodape-final">Relojoaria Cronos · Projeto acadêmico</p>
+  </footer>
+
+  <script src="js/produtos.js"></script>
+  <script src="js/carrinho.js"></script>
+  <script src="js/validacoes.js"></script>
+  <script src="js/menu.js"></script>
+  <script src="js/busca.js"></script>
+  <script src="js/acessibilidade.js"></script>
+  <script src="js/cabecalho.js"></script>
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const motivo = params.get("motivo");
+    const aviso = document.getElementById("aviso-login");
+
+    function mostrarAviso(texto, tipo) {
+      aviso.textContent = texto;
+      aviso.className = "alerta alerta-" + tipo;
+    }
+
+    if (motivo === "checkout") {
+      mostrarAviso("Entre na sua conta para finalizar a compra.", "info");
+    }
+    if (params.get("cadastro") === "ok") {
+      mostrarAviso("Cadastro realizado com sucesso! Entre com seu login e senha.", "sucesso");
+    }
+    if (estaLogado()) {
+      window.location.replace("perfil.html");
+    }
+
+    (function () {
+      const marcas = Array.from({ length: 12 }, (_, i) =>
+        `<line x1="100" y1="12" x2="100" y2="${i % 3 === 0 ? 26 : 20}" transform="rotate(${i * 30} 100 100)"/>`).join("");
+      const relogio = (classe) => `
+        <svg class="relogio-fundo ${classe}" viewBox="0 0 200 200" fill="none" stroke="currentColor">
+          <circle cx="100" cy="100" r="92" stroke-width="2"/>
+          <circle cx="100" cy="100" r="84" stroke-width="0.6"/>
+          <g stroke-width="2">${marcas}</g>
+          <line class="ponteiro-hora" x1="100" y1="100" x2="100" y2="58" stroke-width="4"/>
+          <line class="ponteiro-min" x1="100" y1="100" x2="100" y2="34" stroke-width="3"/>
+          <line class="ponteiro-seg" x1="100" y1="112" x2="100" y2="28" stroke-width="1.2"/>
+          <circle cx="100" cy="100" r="4" fill="currentColor"/>
+        </svg>`;
+      document.getElementById("fundo-relogios").innerHTML = relogio("rel-1") + relogio("rel-2") + relogio("rel-3");
+    })();
+
+    document.getElementById("login").addEventListener("input", (evento) => {
+      evento.target.value = evento.target.value.replace(/\D/g, "").slice(0, 10);
+    });
+    document.getElementById("senha").addEventListener("input", (evento) => {
+      evento.target.value = evento.target.value.replace(/\D/g, "").slice(0, 8);
+    });
+
+    document.getElementById("form-login").addEventListener("submit", function (evento) {
+      evento.preventDefault();
+
+      const campoLogin = document.getElementById("login");
+      const campoSenha = document.getElementById("senha");
+      const okLogin = mostrarErroCampo(campoLogin, validarLogin(campoLogin.value));
+      const okSenha = mostrarErroCampo(campoSenha, validarSenha(campoSenha.value));
+      if (!okLogin || !okSenha) return;
+
+      const usuario = obterUsuario();
+      if (!usuario) {
+        mostrarAviso("Nenhum cadastro encontrado neste navegador. Crie sua conta primeiro.", "erro");
+        return;
+      }
+
+      const confere = usuario.login.toLowerCase() === campoLogin.value.toLowerCase() && usuario.senha === campoSenha.value;
+      if (!confere) {
+        mostrarAviso("Login ou senha incorretos. Confira os dados e tente de novo.", "erro");
+        campoSenha.value = "";
+        campoSenha.focus();
+        return;
+      }
+
+      iniciarSessao();
+      window.location.href = motivo === "checkout" ? "checkout.html" : "perfil.html";
+    });
+  </script>
+
+  <a href="checkout.html" class="carrinho-flutuante" aria-label="Ver carrinho">
+    <svg class="icone-carrinho" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 4h2.2l2.1 10.2a1.5 1.5 0 0 0 1.5 1.2h8.1a1.5 1.5 0 0 0 1.5-1.1L20 8H6.2"/><circle cx="9.5" cy="19.5" r="1.2"/><circle cx="17" cy="19.5" r="1.2"/></svg>
+    <span class="carrinho-contador js-contador-carrinho">0</span>
+  </a>
+</body>
+</html>

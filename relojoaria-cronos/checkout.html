@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Relojoaria Cronos — Finalizar Compra</title>
+  <meta name="description" content="Finalize sua compra: endereço de entrega, frete e resumo do pedido." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/style.css" />
+  <script src="js/tema.js"></script>
+  <script src="js/sessao.js"></script>
+
+  <script>exigirLogin("checkout");</script>
+</head>
+<body>
+  <a class="pular-conteudo" href="#conteudo">Pular para o conteúdo</a>
+
+  <header class="cabecalho">
+    <button class="botao-hamburguer" id="botao-menu" aria-label="Abrir menu">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="logo"><img class="logo-img" src="assets/logo.png" alt="Relojoaria Cronos" onload="this.nextElementSibling.style.display='none'" onerror="this.style.display='none'"><span>Relojoaria Cronos</span></div>
+    <nav class="navegacao" id="navegacao" aria-label="Navegação principal"></nav>
+  </header>
+
+  <div class="overlay-menu" id="overlay-menu"></div>
+  <aside class="menu-lateral" id="menu-lateral">
+    <button class="fechar-menu" id="botao-fechar-menu" aria-label="Fechar menu">✕</button>
+    <div class="logo"><img class="logo-img" src="assets/logo.png" alt="Relojoaria Cronos" onload="this.nextElementSibling.style.display='none'" onerror="this.style.display='none'"><span>Relojoaria Cronos</span></div>
+    <nav id="menu-nav" aria-label="Menu lateral"></nav>
+  </aside>
+
+  <div class="divisor"></div>
+
+  <main id="conteudo" class="tela-checkout">
+
+    <section>
+      <h1>Endereço de entrega</h1>
+
+      <form id="form-checkout" class="cartao">
+        <div class="linha-cep">
+          <div class="campo">
+            <label for="cep">CEP</label>
+            <input type="text" id="cep" name="cep" placeholder="00000-000" maxlength="9" required />
+          </div>
+          <button type="button" id="botao-buscar-cep" class="botao botao-secundario">Buscar CEP</button>
+        </div>
+        <p id="cep-mensagem" class="mensagem-erro"></p>
+
+        <div class="grade-endereco">
+          <div class="campo">
+            <label for="endereco">Rua / Avenida</label>
+            <input type="text" id="endereco" name="endereco" required />
+          </div>
+          <div class="campo">
+            <label for="numero">Número</label>
+            <input type="text" id="numero" name="numero" required />
+          </div>
+        </div>
+
+        <div class="campo">
+          <label for="bairro">Bairro</label>
+          <input type="text" id="bairro" name="bairro" required />
+        </div>
+
+        <div class="grade-endereco">
+          <div class="campo">
+            <label for="cidade">Cidade</label>
+            <input type="text" id="cidade" name="cidade" required />
+          </div>
+          <div class="campo">
+            <label for="uf">UF</label>
+            <input type="text" id="uf" name="uf" maxlength="2" required />
+          </div>
+        </div>
+
+        <fieldset class="forma-pagamento">
+          <legend>Forma de pagamento</legend>
+          <label><input type="radio" name="pagamento" value="Pix" checked /> Pix</label>
+          <label><input type="radio" name="pagamento" value="Cartão de crédito" /> Cartão de crédito</label>
+          <label><input type="radio" name="pagamento" value="Boleto" /> Boleto</label>
+          <p class="aviso-frete" id="aviso-pagamento">Pix e boleto são à vista. O parcelamento vale para cartão de crédito. (simulação)</p>
+        </fieldset>
+
+        <p id="pedido-mensagem" class="mensagem-sucesso"></p>
+
+        <button type="submit" class="botao" id="botao-finalizar">Finalizar compra</button>
+      </form>
+    </section>
+
+    <section class="cartao">
+      <h1>Seu pedido</h1>
+      <div id="lista-carrinho"></div>
+      <div class="resumo-linha"><span>Subtotal</span><span id="subtotal-carrinho">R$ 0,00</span></div>
+      <div class="campo-cupom">
+        <input type="text" id="cupom" placeholder="Cupom de desconto" aria-label="Código do cupom" autocomplete="off" />
+        <button type="button" id="botao-cupom" class="botao botao-secundario">Aplicar</button>
+      </div>
+      <p id="cupom-mensagem" class="mensagem-erro"></p>
+      <div class="resumo-linha linha-desconto" id="linha-desconto" hidden><span><span id="rotulo-desconto">Desconto</span> <button type="button" id="botao-remover-cupom" class="remover-cupom">remover</button></span><span id="desconto-carrinho"></span></div>
+      <div class="resumo-linha"><span>Frete</span><span id="frete-carrinho">informe o CEP</span></div>
+      <p class="aviso-frete" id="aviso-frete">Frete grátis em compras acima de R$ 1.500,00 (simulação).</p>
+      <div class="resumo-total">
+        <span>Total</span>
+        <span id="total-carrinho">R$ 0,00</span>
+      </div>
+      <div class="campo campo-parcelas">
+        <label for="parcelas">Parcelamento (sem juros)</label>
+        <select id="parcelas" form="form-checkout"></select>
+      </div>
+    </section>
+  </main>
+
+  <div class="divisor"></div>
+  <footer class="rodape">
+    <div class="rodape-colunas">
+      <div>
+        <h2>Relojoaria Cronos</h2>
+        <p>Uma seleção de relógios escolhidos pela precisão, pelo acabamento e pela história que carregam.</p>
+      </div>
+      <nav aria-label="Navegação do rodapé">
+        <h2>Navegar</h2>
+        <a href="index.html">Catálogo</a>
+        <a href="index.html?favoritos=1">Favoritos</a>
+        <a href="pedidos.html">Meus pedidos</a>
+        <a href="checkout.html">Carrinho</a>
+      </nav>
+      <div>
+        <h2>Compra segura</h2>
+        <p>Garantia de 2 anos<br>Troca em até 30 dias<br>Até 10x sem juros</p>
+      </div>
+    </div>
+    <p class="rodape-final">Relojoaria Cronos · Projeto acadêmico</p>
+  </footer>
+
+  <script src="js/carrinho.js"></script>
+  <script src="js/validacoes.js"></script>
+  <script src="js/cep.js"></script>
+  <script src="js/menu.js"></script>
+  <script src="js/produtos.js"></script>
+  <script src="js/busca.js"></script>
+  <script src="js/acessibilidade.js"></script>
+  <script src="js/cabecalho.js"></script>
+  <script>
+    function renderizarCarrinho() {
+      const lista = document.getElementById("lista-carrinho");
+      const itens = obterCarrinho();
+
+      if (itens.length === 0) {
+        lista.innerHTML = '<p class="carrinho-vazio">Seu carrinho está vazio.</p>';
+      } else {
+        lista.innerHTML = itens
+          .map(
+            (item) => `
+              <div class="item-carrinho">
+                <span class="item-nome">${item.nome}</span>
+                <span class="item-quantidade">
+                  <button type="button" class="botao-qtd" aria-label="Diminuir quantidade de ${item.nome}" onclick="mudarQuantidade(${item.id}, -1)">−</button>
+                  <strong>${item.quantidade}</strong>
+                  <button type="button" class="botao-qtd" aria-label="Aumentar quantidade de ${item.nome}" onclick="mudarQuantidade(${item.id}, 1)">+</button>
+                </span>
+                <span>
+                  ${formatarPreco(item.preco * item.quantidade)}
+                  <button onclick="removerItem(${item.id})">remover</button>
+                </span>
+              </div>
+            `
+          )
+          .join("");
+      }
+
+      atualizarTotais();
+
+      document.getElementById("botao-finalizar").disabled = itens.length === 0;
+    }
+
+    let cupomAplicado = "";
+
+    function mostrarMensagemCupom(texto, sucesso) {
+      const msg = document.getElementById("cupom-mensagem");
+      msg.className = sucesso ? "mensagem-sucesso" : "mensagem-erro";
+      msg.textContent = texto;
+    }
+
+    function aplicarCupom() {
+      const campo = document.getElementById("cupom");
+      const resultado = validarCupom(campo.value, calcularTotalCarrinho());
+
+      if (!resultado.valido) {
+        cupomAplicado = "";
+        mostrarMensagemCupom(resultado.mensagem, false);
+      } else {
+        cupomAplicado = resultado.codigo;
+        campo.value = "";
+        mostrarMensagemCupom(resultado.mensagem, true);
+      }
+      atualizarTotais();
+    }
+
+    document.getElementById("botao-cupom").addEventListener("click", aplicarCupom);
+
+    document.getElementById("cupom").addEventListener("keydown", function (evento) {
+      if (evento.key === "Enter") {
+        evento.preventDefault();
+        aplicarCupom();
+      }
+    });
+
+    document.getElementById("botao-remover-cupom").addEventListener("click", function () {
+      cupomAplicado = "";
+      mostrarMensagemCupom("Cupom removido.", true);
+      atualizarTotais();
+    });
+
+    function descontoAtual(subtotal) {
+      if (!cupomAplicado) return 0;
+      const resultado = validarCupom(cupomAplicado, subtotal);
+      if (resultado.valido) return resultado.desconto;
+      cupomAplicado = "";
+      mostrarMensagemCupom(resultado.mensagem, false);
+      return 0;
+    }
+
+    function atualizarTotais() {
+      const subtotal = calcularTotalCarrinho();
+      const desconto = descontoAtual(subtotal);
+      const frete = calcularFrete(document.getElementById("uf").value, subtotal - desconto);
+
+      const linhaDesconto = document.getElementById("linha-desconto");
+      linhaDesconto.hidden = desconto === 0;
+      document.getElementById("rotulo-desconto").textContent = "Desconto (" + cupomAplicado + ")";
+      document.getElementById("desconto-carrinho").textContent = "− " + formatarPreco(desconto);
+
+      document.getElementById("subtotal-carrinho").textContent = formatarPreco(subtotal);
+      document.getElementById("frete-carrinho").textContent =
+        frete === null ? "informe o CEP" : frete === 0 ? "Grátis" : formatarPreco(frete);
+      const total = Math.round((subtotal - desconto + (frete || 0)) * 100) / 100;
+      document.getElementById("total-carrinho").textContent = formatarPreco(total);
+      atualizarParcelas(total);
+    }
+
+    function atualizarParcelas(total) {
+      const select = document.getElementById("parcelas");
+      const escolhida = select.value || "1";
+      select.innerHTML = "";
+      for (let n = 1; n <= 10; n++) {
+        const opcao = document.createElement("option");
+        opcao.value = n;
+        opcao.textContent = n + "x de " + formatarPreco(total / n) + (n === 1 ? " (à vista)" : "");
+        select.appendChild(opcao);
+      }
+      select.value = escolhida;
+    }
+
+    function pagamentoEscolhido() {
+      return document.querySelector('input[name="pagamento"]:checked').value;
+    }
+
+    function aplicarPagamento() {
+      const select = document.getElementById("parcelas");
+      const cartao = pagamentoEscolhido() === "Cartão de crédito";
+      if (!cartao) select.value = "1";
+      select.disabled = !cartao;
+    }
+
+    document.querySelectorAll('input[name="pagamento"]').forEach((radio) => {
+      radio.addEventListener("change", aplicarPagamento);
+    });
+
+    function mudarQuantidade(id, delta) {
+      alterarQuantidade(id, delta);
+      renderizarCarrinho();
+    }
+
+    document.getElementById("uf").addEventListener("input", atualizarTotais);
+
+    function removerItem(id) {
+      removerDoCarrinho(id);
+      atualizarContadorCarrinho();
+      renderizarCarrinho();
+    }
+
+    document
+      .getElementById("botao-buscar-cep")
+      .addEventListener("click", buscarEnderecoPorCep);
+
+    document.getElementById("form-checkout").addEventListener("submit", function (evento) {
+      evento.preventDefault();
+
+      const itens = obterCarrinho();
+      const subtotal = calcularTotalCarrinho();
+      const uf = document.getElementById("uf").value.trim().toUpperCase();
+      const desconto = descontoAtual(subtotal);
+      const frete = calcularFrete(uf, subtotal - desconto);
+      const mensagem = document.getElementById("pedido-mensagem");
+
+      if (frete === null) {
+        mensagem.className = "mensagem-erro";
+        mensagem.textContent = "UF inválida. Use a sigla do estado (ex: RJ).";
+        return;
+      }
+
+      const pedido = {
+        numero: "CR" + Date.now().toString().slice(-8),
+        email: emailAtual(),
+        data: new Date().toISOString(),
+        itens: itens.map((i) => ({ id: i.id, nome: i.nome, preco: i.preco, quantidade: i.quantidade })),
+        subtotal: subtotal,
+        cupom: cupomAplicado,
+        desconto: desconto,
+        frete: frete,
+        total: Math.round((subtotal - desconto + frete) * 100) / 100,
+        pagamento: pagamentoEscolhido(),
+        parcelas: Number(document.getElementById("parcelas").value),
+        endereco: {
+          rua: document.getElementById("endereco").value,
+          numero: document.getElementById("numero").value,
+          bairro: document.getElementById("bairro").value,
+          cidade: document.getElementById("cidade").value,
+          uf: uf,
+          cep: document.getElementById("cep").value,
+        },
+      };
+      salvarPedido(pedido);
+
+      localStorage.removeItem("relojoaria_carrinho");
+      window.location.href = "pedido-confirmado.html?n=" + pedido.numero;
+    });
+
+    (function preencherEndereco() {
+      const usuario = obterUsuario();
+      if (!usuario || !usuario.endereco) return;
+      const e = usuario.endereco;
+      const valores = { cep: e.cep, endereco: e.rua, numero: e.numero, bairro: e.bairro, cidade: e.cidade, uf: e.uf };
+      Object.entries(valores).forEach(([id, valor]) => {
+        const campo = document.getElementById(id);
+        if (campo && !campo.value) campo.value = valor || "";
+      });
+    })();
+
+    renderizarCarrinho();
+    aplicarPagamento();
+  </script>
+</body>
+</html>
