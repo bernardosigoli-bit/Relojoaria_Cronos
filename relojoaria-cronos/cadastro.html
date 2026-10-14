@@ -111,7 +111,7 @@
 
         <div class="campo">
           <label for="login">Usuário</label>
-          <input type="text" id="login" maxlength="10" inputmode="numeric" pattern="[0-9]{10}" placeholder="Exatamente 10 dígitos numéricos" autocomplete="username" />
+          <input type="text" id="login" maxlength="10" pattern="[A-Za-z]{10}" placeholder="Exatamente 10 letras" autocomplete="username" />
           <p class="erro-campo" id="login-erro"></p>
         </div>
 
@@ -206,7 +206,7 @@
     document.getElementById("celular").addEventListener("input", (e) => mascararTelefone(e.target));
     ["login", "senha", "confirmar"].forEach((id) => {
       document.getElementById(id).addEventListener("input", (e) => {
-        e.target.value = e.target.value.replace(/\D/g, "").slice(0, id === "login" ? 10 : 8);
+        e.target.value = id === "login" ? e.target.value.replace(/[^A-Za-z]/g, "").slice(0, 10) : e.target.value.replace(/\D/g, "").slice(0, 8);
       });
     });
     document.getElementById("botao-buscar-cep").addEventListener("click", buscarEnderecoPorCep);
