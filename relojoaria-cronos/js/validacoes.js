@@ -69,7 +69,7 @@ function validarTelefoneCelular(valor) {
 }
 
 function validarLogin(valor) {
-    return /^[A-Za-z]{6}$/.test(valor) ? "" : "O usuário deve ter exatamente 6 letras.";
+    return /^[A-Za-z]{10}$/.test(valor) ? "" : "O usuário deve ter exatamente 10 letras.";
 }
 
 function validarSenha(valor) {
