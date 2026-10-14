@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Relojoaria Cronos — Entrar</title>
-  <meta name="description" content="Entre na sua conta da Relojoaria Cronos." />
+  <title>Relojoaria Cronos — Criar conta</title>
+  <meta name="description" content="Crie sua conta na Relojoaria Cronos." />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet" />
@@ -32,35 +32,108 @@
 
   <div class="divisor"></div>
 
-  <div class="fundo-login" aria-hidden="true">
-    <div class="fundo-relogios" id="fundo-relogios"></div>
-    <div class="fundo-pelicula"></div>
-  </div>
+  <main id="conteudo" class="tela-cadastro">
+    <div class="caixa-cadastro cartao">
+      <h1>Criar conta</h1>
+      <p class="subtitulo">Preencha seus dados para finalizar compras e acessar a área do cliente.</p>
 
-  <main id="conteudo" class="tela-login">
-    <div class="caixa-login cartao">
-      <h1>Entrar</h1>
-      <p class="subtitulo">Acesse sua área do cliente.</p>
+      <p class="nota-cupom" id="nota-cupom"></p>
+      <div id="aviso-cadastro" class="alerta escondido" role="alert"></div>
 
-      <div id="aviso-login" class="alerta escondido" role="alert"></div>
+      <form id="form-cadastro" novalidate>
+        <div class="campo">
+          <label for="nome">Nome completo</label>
+          <input type="text" id="nome" maxlength="80" placeholder="Apenas letras, de 15 a 80 caracteres" autocomplete="name" />
+          <p class="erro-campo" id="nome-erro"></p>
+        </div>
 
-      <form id="form-login" novalidate>
+        <div class="campo">
+          <label for="cpf">CPF</label>
+          <input type="text" id="cpf" maxlength="14" inputmode="numeric" placeholder="000.000.000-00" autocomplete="off" />
+          <p class="erro-campo" id="cpf-erro"></p>
+        </div>
+
+        <fieldset class="grupo-campos">
+          <legend>Endereço</legend>
+          <div class="linha-cep">
+            <div class="campo">
+              <label for="cep">CEP</label>
+              <input type="text" id="cep" maxlength="9" inputmode="numeric" placeholder="00000-000" autocomplete="postal-code" />
+              <p class="erro-campo" id="cep-erro"></p>
+            </div>
+            <button type="button" id="botao-buscar-cep" class="botao botao-secundario">Buscar CEP</button>
+          </div>
+          <p id="cep-mensagem" class="mensagem-erro" role="status"></p>
+
+          <div class="grade-duas-colunas grade-rua">
+            <div class="campo">
+              <label for="endereco">Rua</label>
+              <input type="text" id="endereco" readonly placeholder="Preenchida pelo CEP" />
+              <p class="erro-campo" id="endereco-erro"></p>
+            </div>
+            <div class="campo">
+              <label for="numero">Número</label>
+              <input type="text" id="numero" maxlength="10" placeholder="Nº" />
+              <p class="erro-campo" id="numero-erro"></p>
+            </div>
+          </div>
+          <div class="grade-tres-colunas">
+            <div class="campo">
+              <label for="bairro">Bairro</label>
+              <input type="text" id="bairro" readonly placeholder="Preenchido pelo CEP" />
+              <p class="erro-campo" id="bairro-erro"></p>
+            </div>
+            <div class="campo">
+              <label for="cidade">Cidade</label>
+              <input type="text" id="cidade" readonly placeholder="Preenchida pelo CEP" />
+              <p class="erro-campo" id="cidade-erro"></p>
+            </div>
+            <div class="campo">
+              <label for="uf">UF</label>
+              <input type="text" id="uf" readonly maxlength="2" placeholder="UF" />
+              <p class="erro-campo" id="uf-erro"></p>
+            </div>
+          </div>
+        </fieldset>
+
+        <div class="grade-duas-colunas">
+          <div class="campo">
+            <label for="fixo">Telefone fixo</label>
+            <input type="tel" id="fixo" maxlength="16" inputmode="numeric" placeholder="(+55)XX-XXXXXXXX" />
+            <p class="erro-campo" id="fixo-erro"></p>
+          </div>
+          <div class="campo">
+            <label for="celular">Celular</label>
+            <input type="tel" id="celular" maxlength="17" inputmode="numeric" placeholder="(+55)XX-XXXXXXXX" />
+            <p class="erro-campo" id="celular-erro"></p>
+          </div>
+        </div>
+
         <div class="campo">
           <label for="login">Usuário</label>
           <input type="text" id="login" maxlength="10" pattern="[A-Za-z]{10}" placeholder="Exatamente 10 letras" autocomplete="username" />
           <p class="erro-campo" id="login-erro"></p>
         </div>
-        <div class="campo">
-          <label for="senha">Senha numérica</label>
-          <input type="password" id="senha" maxlength="8" inputmode="numeric" pattern="[0-9]{8}" placeholder="8 números" autocomplete="current-password" />
-          <p class="erro-campo" id="senha-erro"></p>
+
+        <div class="grade-duas-colunas">
+          <div class="campo">
+            <label for="senha">Senha numérica</label>
+            <input type="password" id="senha" maxlength="8" inputmode="numeric" pattern="[0-9]{8}" placeholder="Exatamente 8 números" autocomplete="new-password" />
+            <p class="erro-campo" id="senha-erro"></p>
+          </div>
+          <div class="campo">
+            <label for="confirmar">Confirmar senha</label>
+            <input type="password" id="confirmar" maxlength="8" inputmode="numeric" pattern="[0-9]{8}" placeholder="Repita os 8 números" autocomplete="new-password" />
+            <p class="erro-campo" id="confirmar-erro"></p>
+          </div>
         </div>
-        <button type="submit" class="botao">Entrar</button>
+
+        <button type="submit" class="botao">Criar conta</button>
       </form>
 
       <p class="login-rodape">
-        Ainda não tem conta? <a class="link-destaque" href="cadastro.html">Cadastre-se</a>.<br>
-        Simulação acadêmica: os dados ficam apenas no seu navegador.
+        Já tem conta? <a class="link-destaque" href="login.html">Entrar</a>.<br>
+        Simulação acadêmica: os dados ficam apenas no seu navegador (localStorage).
       </p>
     </div>
   </main>
@@ -95,74 +168,88 @@
   <script src="js/busca.js"></script>
   <script src="js/acessibilidade.js"></script>
   <script src="js/cabecalho.js"></script>
+  <script src="js/cep.js"></script>
   <script>
-    const params = new URLSearchParams(window.location.search);
-    const motivo = params.get("motivo");
-    const aviso = document.getElementById("aviso-login");
+    const campos = {
+      nome: () => validarNome(document.getElementById("nome").value),
+      cpf: () => validarCPF(document.getElementById("cpf").value),
+      cep: () => validarCEP(document.getElementById("cep").value),
+      endereco: () => (document.getElementById("endereco").value.trim() ? "" : "Informe a rua (use o CEP)."),
+      numero: () => (document.getElementById("numero").value.trim() ? "" : "Informe o número."),
+      bairro: () => (document.getElementById("bairro").value.trim() ? "" : "Informe o bairro."),
+      cidade: () => (document.getElementById("cidade").value.trim() ? "" : "Informe a cidade."),
+      uf: () => (/^[A-Za-z]{2}$/.test(document.getElementById("uf").value.trim()) ? "" : "Informe a UF."),
+      fixo: () => validarTelefoneFixo(document.getElementById("fixo").value),
+      celular: () => validarTelefoneCelular(document.getElementById("celular").value),
+      login: () => validarLogin(document.getElementById("login").value),
+      senha: () => validarSenha(document.getElementById("senha").value),
+      confirmar: () =>
+        document.getElementById("confirmar").value === document.getElementById("senha").value &&
+        document.getElementById("confirmar").value !== ""
+          ? ""
+          : "A confirmação deve ser igual à senha.",
+    };
 
-    function mostrarAviso(texto, tipo) {
-      aviso.textContent = texto;
-      aviso.className = "alerta alerta-" + tipo;
+    function validarCampo(id) {
+      return mostrarErroCampo(document.getElementById(id), campos[id]());
     }
 
-    if (motivo === "checkout") {
-      mostrarAviso("Entre na sua conta para finalizar a compra.", "info");
-    }
-    if (params.get("cadastro") === "ok") {
-      mostrarAviso("Cadastro realizado com sucesso! Entre com seu login e senha.", "sucesso");
-    }
-    if (estaLogado()) {
-      window.location.replace("perfil.html");
-    }
-
-    (function () {
-      const marcas = Array.from({ length: 12 }, (_, i) =>
-        `<line x1="100" y1="12" x2="100" y2="${i % 3 === 0 ? 26 : 20}" transform="rotate(${i * 30} 100 100)"/>`).join("");
-      const relogio = (classe) => `
-        <svg class="relogio-fundo ${classe}" viewBox="0 0 200 200" fill="none" stroke="currentColor">
-          <circle cx="100" cy="100" r="92" stroke-width="2"/>
-          <circle cx="100" cy="100" r="84" stroke-width="0.6"/>
-          <g stroke-width="2">${marcas}</g>
-          <line class="ponteiro-hora" x1="100" y1="100" x2="100" y2="58" stroke-width="4"/>
-          <line class="ponteiro-min" x1="100" y1="100" x2="100" y2="34" stroke-width="3"/>
-          <line class="ponteiro-seg" x1="100" y1="112" x2="100" y2="28" stroke-width="1.2"/>
-          <circle cx="100" cy="100" r="4" fill="currentColor"/>
-        </svg>`;
-      document.getElementById("fundo-relogios").innerHTML = relogio("rel-1") + relogio("rel-2") + relogio("rel-3");
-    })();
-
-    document.getElementById("login").addEventListener("input", (evento) => {
-      evento.target.value = evento.target.value.replace(/[^A-Za-z]/g, "").slice(0, 10);
+    Object.keys(campos).forEach((id) => {
+      document.getElementById(id).addEventListener("blur", () => validarCampo(id));
     });
-    document.getElementById("senha").addEventListener("input", (evento) => {
-      evento.target.value = evento.target.value.replace(/\D/g, "").slice(0, 8);
+    document.getElementById("senha").addEventListener("input", () => {
+      if (document.getElementById("confirmar").value) validarCampo("confirmar");
     });
 
-    document.getElementById("form-login").addEventListener("submit", function (evento) {
+    document.getElementById("cpf").addEventListener("input", (e) => mascararCPF(e.target));
+    document.getElementById("fixo").addEventListener("input", (e) => mascararTelefone(e.target));
+    document.getElementById("celular").addEventListener("input", (e) => mascararTelefone(e.target));
+    ["login", "senha", "confirmar"].forEach((id) => {
+      document.getElementById(id).addEventListener("input", (e) => {
+        e.target.value = id === "login" ? e.target.value.replace(/[^A-Za-z]/g, "").slice(0, 10) : e.target.value.replace(/\D/g, "").slice(0, 8);
+      });
+    });
+    document.getElementById("botao-buscar-cep").addEventListener("click", buscarEnderecoPorCep);
+
+    const aviso = document.getElementById("aviso-cadastro");
+
+    document.getElementById("form-cadastro").addEventListener("submit", function (evento) {
       evento.preventDefault();
 
-      const campoLogin = document.getElementById("login");
-      const campoSenha = document.getElementById("senha");
-      const okLogin = mostrarErroCampo(campoLogin, validarLogin(campoLogin.value));
-      const okSenha = mostrarErroCampo(campoSenha, validarSenha(campoSenha.value));
-      if (!okLogin || !okSenha) return;
-
-      const usuario = obterUsuario();
-      if (!usuario) {
-        mostrarAviso("Nenhum cadastro encontrado neste navegador. Crie sua conta primeiro.", "erro");
+      const resultados = Object.keys(campos).map((id) => validarCampo(id));
+      if (resultados.includes(false)) {
+        aviso.textContent = "Corrija os campos destacados para continuar.";
+        aviso.className = "alerta alerta-erro";
+        const primeiro = document.querySelector("#form-cadastro .invalido");
+        if (primeiro) primeiro.focus();
         return;
       }
 
-      const confere = usuario.login.toLowerCase() === campoLogin.value.toLowerCase() && usuario.senha === campoSenha.value;
-      if (!confere) {
-        mostrarAviso("Login ou senha incorretos. Confira os dados e tente de novo.", "erro");
-        campoSenha.value = "";
-        campoSenha.focus();
-        return;
-      }
+      const valor = (id) => document.getElementById(id).value.trim();
+      salvarUsuario({
+        nome: valor("nome").replace(/\s+/g, " "),
+        cpf: valor("cpf"),
+        endereco: {
+          cep: valor("cep"),
+          rua: valor("endereco"),
+          numero: valor("numero"),
+          bairro: valor("bairro"),
+          cidade: valor("cidade"),
+          uf: valor("uf").toUpperCase(),
+        },
+        telefoneFixo: valor("fixo"),
+        celular: valor("celular"),
+        login: valor("login"),
+        senha: document.getElementById("senha").value,
+        criadoEm: new Date().toISOString(),
+      });
 
-      iniciarSessao();
-      window.location.href = motivo === "checkout" ? "checkout.html" : "perfil.html";
+      aviso.textContent = "Cadastro realizado com sucesso! Redirecionando para o login...";
+      aviso.className = "alerta alerta-sucesso";
+      mostrarToast("Cadastro realizado com sucesso!");
+      setTimeout(() => {
+        window.location.href = "login.html?cadastro=ok";
+      }, 1600);
     });
   </script>
 
