@@ -47,7 +47,9 @@
       <form id="form-login" novalidate>
         <div class="campo">
           <label for="login">Usuário</label>
-         <input type="text" id="login" maxlength="10" pattern="[A-Za-z]{6}" placeholder="Exatamente 10 letras" autocomplete="username" />
+          <input type="text" id="login" maxlength="10" pattern="[A-Za-z]{10}" placeholder="Exatamente 10 letras" autocomplete="username" />
+          <p class="erro-campo" id="login-erro"></p>
+        </div>
         <div class="campo">
           <label for="senha">Senha numérica</label>
           <input type="password" id="senha" maxlength="8" inputmode="numeric" pattern="[0-9]{8}" placeholder="8 números" autocomplete="current-password" />
@@ -130,7 +132,7 @@
     })();
 
     document.getElementById("login").addEventListener("input", (evento) => {
-      evento.target.value = evento.target.value.replace(/\D/g, "").slice(0, 10);
+      evento.target.value = evento.target.value.replace(/[^A-Za-z]/g, "").slice(0, 10);
     });
     document.getElementById("senha").addEventListener("input", (evento) => {
       evento.target.value = evento.target.value.replace(/\D/g, "").slice(0, 8);
