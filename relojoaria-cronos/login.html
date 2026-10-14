@@ -47,9 +47,7 @@
       <form id="form-login" novalidate>
         <div class="campo">
           <label for="login">Usuário</label>
-          <input type="text" id="login" maxlength="10" inputmode="numeric" pattern="[0-9]{10}" placeholder="10 dígitos numéricos" autocomplete="username" />
-          <p class="erro-campo" id="login-erro"></p>
-        </div>
+         <input type="text" id="login" maxlength="10" pattern="[A-Za-z]{6}" placeholder="Exatamente 10 letras" autocomplete="username" />
         <div class="campo">
           <label for="senha">Senha numérica</label>
           <input type="password" id="senha" maxlength="8" inputmode="numeric" pattern="[0-9]{8}" placeholder="8 números" autocomplete="current-password" />
